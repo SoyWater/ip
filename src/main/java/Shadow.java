@@ -18,8 +18,6 @@ public class Shadow {
         printDivider.run();
         System.out.println(sayHello);
 
-        List<String> list = new ArrayList<>();
-
         Scanner userInput = new Scanner(System.in);
         while (true) {
             printDivider.run();
@@ -29,12 +27,9 @@ public class Shadow {
                 System.out.println(sayBye);
                 break;
             } else if (demand.equalsIgnoreCase("list")) {
-                for (int i = 0; i < list.size(); ++i) {
-                    System.out.printf("%d: %s%n", i + 1, list.get(i));
-                }
+                Task.listTasks();
             } else {
-                list.add(demand);
-                System.out.printf("added: %s%n", demand);
+                Task.addTask(demand);
             }
         }
         userInput.close();

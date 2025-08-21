@@ -10,11 +10,15 @@ public class Task {
     }
 
     public void mark() {
+        System.out.println("Noted, the following task has been marked: ");
         this.marked = true;
+        System.out.println(this.toString());
     }
 
     public void unmark() {
+        System.out.println("Noted, the following task has been unmarked: ");
         this.marked = false;
+        System.out.println(this.toString());
     }
 
     @Override

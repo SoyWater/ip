@@ -3,6 +3,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Shadow {
+
+    public static List<Task> TaskList = new ArrayList<>();
+
     public static void main(String[] args) {
         Runnable printDivider = () -> System.out.println("_________________________________________________________");
         String asciiArt =
@@ -27,11 +30,23 @@ public class Shadow {
                 System.out.println(sayBye);
                 break;
             } else if (demand.equalsIgnoreCase("list")) {
-                Task.listTasks();
+                listTasks();
             } else {
-                Task.addTask(demand);
+                addTask(demand);
             }
         }
         userInput.close();
     }
+
+    public static void addTask(String name) {
+        TaskList.add(new Task(name));
+        System.out.printf("Added: %s", name);
+    }
+
+    public static void listTasks() {
+        for (int i = 0; i < TaskList.size(); ++i) {
+            System.out.printf("%d: %s%n", i + 1, TaskList.get(i));
+        }
+    }
 }
+

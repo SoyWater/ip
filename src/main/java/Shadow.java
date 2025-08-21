@@ -13,20 +13,17 @@ public class Shadow {
                 """;
         String sayHello = "Hello, this is \n" + asciiArt + "What's your demand today?";
         String sayBye = "Very well, contact me again when you have more demands.";
-
-
         printDivider.run();
         System.out.println(sayHello);
 
         Scanner userInput = new Scanner(System.in);
-        boolean running = true;
-        while (running) {
+        while (true) {
             printDivider.run();
             System.out.print("> ");
             String demand = userInput.nextLine();
             if (demand.equalsIgnoreCase("bye")) {
                 System.out.println(sayBye);
-                running = false;
+                break;
             } else {
                 System.out.println(demand);
             }

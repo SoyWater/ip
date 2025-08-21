@@ -7,13 +7,15 @@ public class Shadow {
                         / ___|| |__   __ _  __| | _____      __
                         \\___ \\| '_ \\ / _` |/ _` |/ _ \\ \\ /\\ / /
                          ___) | | | | (_| | (_| | (_) \\ V  V /\s
-                        |____/|_| |_|\\__,_|\\__,_|\\___/ \\_/\\_/ \s
+                        |____/|_| |_|\\__,_|\\__,_|\\___/ \\_/\\_/ \s\n
                 """;
+        String sayHello = "Hello, this is \n" + asciiArt + "What's your demand today?";
+
 
         System.out.println(divider);
-        System.out.println("Hello, this is \n" + asciiArt);
-        System.out.println("What's your demand today?");
+        System.out.println(sayHello);
         System.out.println(divider);
+
 
     }
 }

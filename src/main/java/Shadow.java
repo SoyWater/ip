@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Shadow {
     public static void main(String[] args) {
-        String divider = "_________________________________________________________";
+        Runnable printDivider = () -> System.out.println("_________________________________________________________");
         String asciiArt =
                 """
                          ____  _               _              \s
@@ -15,13 +15,13 @@ public class Shadow {
         String sayBye = "Very well, contact me again when you have more demands.";
 
 
-        System.out.println(divider);
+        printDivider.run();
         System.out.println(sayHello);
 
         Scanner userInput = new Scanner(System.in);
         boolean running = true;
         while (running) {
-            System.out.println(divider);
+            printDivider.run();
             System.out.print("> ");
             String demand = userInput.nextLine();
             if (demand.equalsIgnoreCase("bye")) {

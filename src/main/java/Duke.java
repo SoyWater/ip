@@ -1,10 +1,16 @@
 public class Duke {
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        String asciiArt =
+                """
+                         ____  _               _              \s
+                        / ___|| |__   __ _  __| | _____      __
+                        \\___ \\| '_ \\ / _` |/ _` |/ _ \\ \\ /\\ / /
+                         ___) | | | | (_| | (_| | (_) \\ V  V /\s
+                        |____/|_| |_|\\__,_|\\__,_|\\___/ \\_/\\_/ \s
+                """;
+
+        System.out.println("Hello, this is \n" + asciiArt);
+        System.out.println("What's your demand today?");
+
     }
 }

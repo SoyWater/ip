@@ -10,11 +10,13 @@ public class Shadow {
                         |____/|_| |_|\\__,_|\\__,_|\\___/ \\_/\\_/ \s\n
                 """;
         String sayHello = "Hello, this is \n" + asciiArt + "What's your demand today?";
+        String sayBye = "Very well, contact me again when you have more demands.";
 
 
         System.out.println(divider);
         System.out.println(sayHello);
         System.out.println(divider);
+        System.out.println(sayBye);
 
 
     }

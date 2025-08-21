@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Shadow {
 
-    public static List<Task> TaskList = new ArrayList<>();
+    private final static List<Task> TaskList = new ArrayList<>();
 
     public static void main(String[] args) {
         Runnable printDivider = () -> System.out.println("_________________________________________________________");

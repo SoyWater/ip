@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Shadow {
     public static void main(String[] args) {
         String divider = "_________________________________________________________";
@@ -15,9 +17,20 @@ public class Shadow {
 
         System.out.println(divider);
         System.out.println(sayHello);
-        System.out.println(divider);
-        System.out.println(sayBye);
 
-
+        Scanner userInput = new Scanner(System.in);
+        boolean running = true;
+        while (running) {
+            System.out.println(divider);
+            System.out.print("> ");
+            String demand = userInput.nextLine();
+            if (demand.equalsIgnoreCase("bye")) {
+                System.out.println(sayBye);
+                running = false;
+            } else {
+                System.out.println(demand);
+            }
+        }
+        userInput.close();
     }
 }

@@ -13,6 +13,9 @@ public class DeadLine extends Task{
     }
 
     public static DeadLine of(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("Usage: deadline <taskName> /by <by>");
+        }
         String[] deadlineDetails= input.split("/by", 2);
         if (deadlineDetails.length < 2) {
             throw new IllegalArgumentException("Usage: deadline <taskName> /by <by>");

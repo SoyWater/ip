@@ -12,14 +12,11 @@ public class TaskFactory {
     }
 
     public static Task createTask(String[] parts) {
-        if (parts.length < 2) {
-            throw new IllegalArgumentException("Unknown Command");
-        }
         String type = parts[0];
         Function<String, Task> factory = taskCreators.get(type);
         if (factory == null) {
             throw new IllegalArgumentException("Unknown Command");
         }
-        return factory.apply(parts[1]);
+        return factory.apply(parts.length < 2 ? null : parts[1]);
     }
 }

@@ -14,6 +14,9 @@ public class Event extends Task {
     }
 
     public static Event of(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("Usage: event <taskName> /from <from> /to <to>");
+        }
         String[] fromSplit = input.split("/from", 2);
         if (fromSplit.length < 2) {
             throw new IllegalArgumentException("Usage: event <taskName> /from <from> /to <to>");

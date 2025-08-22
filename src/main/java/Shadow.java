@@ -11,6 +11,7 @@ public class Shadow {
         commands.put("mark", Shadow::markTask);
         commands.put("unmark", Shadow::unmarkTask);
         commands.put("list", Shadow::listTasks);
+        commands.put("delete", Shadow::deleteTask);
     }
     public static void main(String[] args) {
         Runnable printDivider = () -> System.out.println("_________________________________________________________");
@@ -62,6 +63,22 @@ public class Shadow {
         }
         command.accept(parts);
         return true;
+    }
+
+    private static void deleteTask(String[] parts) {
+        if (parts.length != 2) {
+            System.out.println("Usage: delete <Task Number>");
+        } else {
+            try {
+                Task removed = TaskList.remove(Integer.parseInt(parts[1]) - 1);
+                System.out.printf("Removed: %s%n", removed.toString());
+            } catch (NumberFormatException e) {
+                System.out.println("Usage: delete <Task Number>");
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("You have inputted an invalid task number");
+            }
+        }
+
     }
 
     private static void listTasks(String[] parts) {

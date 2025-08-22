@@ -34,5 +34,10 @@ event Concert /from 5pm
 deadline Read paper /by
 todo
 
+delete 1
+delete 3
+delete -1
+delete 200
+
 list
 bye

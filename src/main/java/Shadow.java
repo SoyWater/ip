@@ -1,11 +1,17 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class Shadow {
 
     private final static List<Task> TaskList = new ArrayList<>();
+    private static final Map<String, Consumer<String[]>> commands = new HashMap<>();
 
+    static {
+        commands.put("mark", Shadow::markTask);
+        commands.put("unmark", Shadow::unmarkTask);
+        commands.put("list", Shadow::listTasks);
+    }
     public static void main(String[] args) {
         Runnable printDivider = () -> System.out.println("_________________________________________________________");
         String asciiArt =
@@ -25,42 +31,49 @@ public class Shadow {
         while (true) {
             printDivider.run();
             System.out.print("> ");
+
             String demand = userInput.nextLine();
-            String demandLowerCase = demand.toLowerCase();
-            if (demandLowerCase.equals("bye")) {
+            String[] parts = demand.split(" ", 2);
+            parts[0] = parts[0].toLowerCase();
+
+            if (parts[0].equals("bye")) {
                 System.out.println(sayBye);
                 break;
-            } else if (demandLowerCase.equals("list")) {
-                listTasks();
-            } else if (demandLowerCase.startsWith("mark")) {
-                markTask(demand);
-            } else if (demandLowerCase.startsWith("unmark")) {
-                unmarkTask(demand);
-            } else {
-                addTask(demand);
             }
+            try {
+                if (handleCommand(parts)) {
+                    continue;
+                }
+                TaskList.add(TaskFactory.createTask(parts));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
         }
         userInput.close();
     }
 
-    public static void addTask(String name) {
-        TaskList.add(new Task(name));
-        System.out.printf("Added: %s%n", name);
+    private static boolean handleCommand(String[] parts) {
+        Consumer<String[]> command = commands.get(parts[0]);
+        if (command == null) {
+            return false;
+        }
+        command.accept(parts);
+        return true;
     }
 
-    public static void listTasks() {
+    private static void listTasks(String[] parts) {
         for (int i = 0; i < TaskList.size(); ++i) {
             System.out.printf("%d: %s%n", i + 1, TaskList.get(i));
         }
     }
 
-    public static void markTask(String demand) {
-        String[] lineArray = demand.split(" ");
-        if (lineArray.length != 2) {
+    private static void markTask(String[] parts) {
+        if (parts.length != 2) {
             System.out.println("Usage: mark <Task Number>");
         } else {
             try {
-                TaskList.get(Integer.parseInt(lineArray[1]) - 1).mark();
+                TaskList.get(Integer.parseInt(parts[1]) - 1).mark();
             } catch (NumberFormatException e) {
                 System.out.println("Usage: mark <Task Number>");
             } catch (IndexOutOfBoundsException e) {
@@ -69,13 +82,12 @@ public class Shadow {
         }
     }
 
-    public static void unmarkTask(String demand) {
-        String[] lineArray = demand.split(" ");
-        if (lineArray.length != 2) {
+    private static void unmarkTask(String[] parts) {
+        if (parts.length != 2) {
             System.out.println("Usage: unmark <Task Number>");
         } else {
             try {
-                TaskList.get(Integer.parseInt(lineArray[1]) - 1).unmark();
+                TaskList.get(Integer.parseInt(parts[1]) - 1).unmark();
             } catch (NumberFormatException e) {
                 System.out.println("Usage: unmark <Task Number>");
             } catch (IndexOutOfBoundsException e) {

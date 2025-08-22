@@ -11,4 +11,14 @@ public class DeadLine extends Task{
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), this.deadline);
     }
+
+    public static DeadLine of(String input) {
+        String[] deadlineDetails= input.split("/by", 2);
+        if (deadlineDetails.length < 2) {
+            throw new IllegalArgumentException("Usage: deadline <taskName> /by <by>");
+        }
+        DeadLine deadline = new DeadLine(deadlineDetails[0].trim(), deadlineDetails[1].trim());
+        System.out.printf("Added: %s%n", deadline.toString());
+        return deadline;
+    }
 }

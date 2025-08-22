@@ -10,7 +10,7 @@ public class ToDo extends Task {
     }
 
     public static ToDo of(String input) {
-        ToDo todo = new ToDo(input);
+        ToDo todo = new ToDo(input.trim());
         System.out.printf("Added: %s%n", todo.toString());
         return todo;
     }

@@ -16,13 +16,14 @@ public class Shadow {
         Runnable printDivider = () -> System.out.println("_________________________________________________________");
         String asciiArt =
                 """
-                         ____  _               _              \s
+                         ____  _               _
                         / ___|| |__   __ _  __| | _____      __
                         \\___ \\| '_ \\ / _` |/ _` |/ _ \\ \\ /\\ / /
-                         ___) | | | | (_| | (_| | (_) \\ V  V /\s
-                        |____/|_| |_|\\__,_|\\__,_|\\___/ \\_/\\_/ \n
+                         ___) | | | | (_| | (_| | (_) \\ V  V /
+                        |____/|_| |_|\\__,_|\\__,_|\\___/ \\_/\\_/
+                
                 """;
-        String sayHello = "Hello, this is \n" + asciiArt + "What's your demand today?";
+        String sayHello = "Hello, this is\n" + asciiArt + "What's your demand today?";
         String sayBye = "Very well, contact me again when you have more demands.";
         printDivider.run();
         System.out.println(sayHello);
@@ -33,6 +34,7 @@ public class Shadow {
             System.out.print("> ");
 
             String demand = userInput.nextLine();
+            if (demand.trim().isEmpty()) continue;
             String[] parts = demand.split(" ", 2);
             parts[0] = parts[0].toLowerCase();
 

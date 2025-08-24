@@ -1,9 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Task {
     private final String name;
-    private boolean marked = false;
+    private boolean isMarked = false;
 
     public Task(String name) {
         this.name = name;
@@ -11,13 +8,13 @@ public class Task {
 
     public void mark() {
         System.out.println("Noted, the following task has been marked:");
-        this.marked = true;
+        this.isMarked = true;
         System.out.println(this.toString());
     }
 
     public void unmark() {
         System.out.println("Noted, the following task has been unmarked:");
-        this.marked = false;
+        this.isMarked = false;
         System.out.println(this.toString());
     }
 
@@ -25,7 +22,7 @@ public class Task {
     public String toString() {
         return String.format(
                 "[%s] %s",
-                this.marked ? "X" : " ",
+                this.isMarked ? "X" : " ",
                 this.name
         );
     }

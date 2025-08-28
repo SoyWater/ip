@@ -3,7 +3,6 @@ import java.util.function.Consumer;
 
 public class Shadow {
 
-    private final static Storage storage = new Storage();
     private static final Map<String, Consumer<String[]>> commands = new HashMap<>();
 
     static {
@@ -46,7 +45,7 @@ public class Shadow {
                 if (handleCommand(parts)) {
                     continue;
                 }
-                storage.addTasks(TaskFactory.createTask(parts));
+                Storage.getInstance().addTasks(TaskFactory.createTask(parts));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -69,7 +68,7 @@ public class Shadow {
             System.out.println("Usage: delete <Task Number>");
         } else {
             try {
-                Task removed = storage.removeTask(Integer.parseInt(parts[1]) - 1);
+                Task removed = Storage.getInstance().removeTask(Integer.parseInt(parts[1]) - 1);
                 System.out.printf("Removed: %s%n", removed.toString());
             } catch (NumberFormatException e) {
                 System.out.println("Usage: delete <Task Number>");
@@ -81,8 +80,8 @@ public class Shadow {
     }
 
     private static void listTasks(String[] parts) {
-        for (int i = 0; i < storage.getTasks().size(); ++i) {
-            System.out.printf("%d: %s%n", i + 1, storage.getTasks().get(i));
+        for (int i = 0; i < Storage.getInstance().getTasks().size(); ++i) {
+            System.out.printf("%d: %s%n", i + 1, Storage.getInstance().getTasks().get(i));
         }
     }
 
@@ -91,7 +90,7 @@ public class Shadow {
             System.out.println("Usage: mark <Task Number>");
         } else {
             try {
-                storage.markTask(Integer.parseInt(parts[1]) - 1);
+                Storage.getInstance().markTask(Integer.parseInt(parts[1]) - 1);
             } catch (NumberFormatException e) {
                 System.out.println("Usage: mark <Task Number>");
             } catch (IndexOutOfBoundsException e) {
@@ -105,7 +104,7 @@ public class Shadow {
             System.out.println("Usage: unmark <Task Number>");
         } else {
             try {
-                storage.unmarkTask(Integer.parseInt(parts[1]) - 1);
+                Storage.getInstance().unmarkTask(Integer.parseInt(parts[1]) - 1);
             } catch (NumberFormatException e) {
                 System.out.println("Usage: unmark <Task Number>");
             } catch (IndexOutOfBoundsException e) {

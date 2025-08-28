@@ -3,14 +3,6 @@ import java.util.function.Consumer;
 
 public class Shadow {
 
-    private static final Map<String, Consumer<String[]>> commands = new HashMap<>();
-
-    static {
-        commands.put("mark", Shadow::markTask);
-        commands.put("unmark", Shadow::unmarkTask);
-        commands.put("list", Shadow::listTasks);
-        commands.put("delete", Shadow::deleteTask);
-    }
     public static void main(String[] args) {
         Runnable printDivider = () -> System.out.println("_________________________________________________________");
         String asciiArt =
@@ -33,84 +25,14 @@ public class Shadow {
             System.out.print("> ");
 
             String demand = userInput.nextLine();
-            if (demand.trim().isEmpty()) continue;
-            String[] parts = demand.split(" ", 2);
-            parts[0] = parts[0].toLowerCase();
-
-            if (parts[0].equals("bye")) {
+            if (demand.toLowerCase().startsWith("bye")) {
                 System.out.println(sayBye);
                 break;
             }
-            try {
-                if (handleCommand(parts)) {
-                    continue;
-                }
-                Storage.getInstance().addTasks(TaskFactory.createTask(parts));
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            Parser.parse(demand);
 
         }
         userInput.close();
-    }
-
-    private static boolean handleCommand(String[] parts) {
-        Consumer<String[]> command = commands.get(parts[0]);
-        if (command == null) {
-            return false;
-        }
-        command.accept(parts);
-        return true;
-    }
-
-    private static void deleteTask(String[] parts) {
-        if (parts.length != 2) {
-            System.out.println("Usage: delete <Task Number>");
-        } else {
-            try {
-                Task removed = Storage.getInstance().removeTask(Integer.parseInt(parts[1]) - 1);
-                System.out.printf("Removed: %s%n", removed.toString());
-            } catch (NumberFormatException e) {
-                System.out.println("Usage: delete <Task Number>");
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("You have inputted an invalid task number");
-            }
-        }
-
-    }
-
-    private static void listTasks(String[] parts) {
-        for (int i = 0; i < Storage.getInstance().getTasks().size(); ++i) {
-            System.out.printf("%d: %s%n", i + 1, Storage.getInstance().getTasks().get(i));
-        }
-    }
-
-    private static void markTask(String[] parts) {
-        if (parts.length != 2) {
-            System.out.println("Usage: mark <Task Number>");
-        } else {
-            try {
-                Storage.getInstance().markTask(Integer.parseInt(parts[1]) - 1);
-            } catch (NumberFormatException e) {
-                System.out.println("Usage: mark <Task Number>");
-            } catch (IndexOutOfBoundsException e) {
-               System.out.println("You have inputted an invalid task number");
-            }
-        }
-    }
-
-    private static void unmarkTask(String[] parts) {
-        if (parts.length != 2) {
-            System.out.println("Usage: unmark <Task Number>");
-        } else {
-            try {
-                Storage.getInstance().unmarkTask(Integer.parseInt(parts[1]) - 1);
-            } catch (NumberFormatException e) {
-                System.out.println("Usage: unmark <Task Number>");
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("You have inputted an invalid task number");
-            }
-        }
     }
 }
 

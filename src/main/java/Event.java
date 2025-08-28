@@ -1,8 +1,10 @@
-public class Event extends Task {
-    private final String startTime;
-    private final String endTime;
+import java.time.LocalDateTime;
 
-    public Event(String name, String startTime, String endTime) {
+public class Event extends Task {
+    private final LocalDateTime startTime;
+    private final LocalDateTime endTime;
+
+    public Event(String name, LocalDateTime startTime, LocalDateTime endTime) {
         super(name);
         this.startTime = startTime;
         this.endTime = endTime;
@@ -10,7 +12,12 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return String.format("[E]%s (from: %s to: %s)", super.toString(), this.startTime, this.endTime);
+        return String.format(
+                "[E]%s (from: %s to: %s)",
+                super.toString(),
+                DateTimeParser.format(this.startTime),
+                DateTimeParser.format(this.endTime)
+        );
     }
 
     public static Event of(String input) {
@@ -25,7 +32,9 @@ public class Event extends Task {
         if (toSplit.length < 2) {
             throw new IllegalArgumentException("Usage: event <taskName> /from <from> /to <to>");
         }
-        Event event = new Event(fromSplit[0].trim(), toSplit[0].trim(), toSplit[1].trim());
+        LocalDateTime startTime = DateTimeParser.parse(toSplit[0].trim());
+        LocalDateTime endTime = DateTimeParser.parse(toSplit[1].trim());
+        Event event = new Event(fromSplit[0].trim(), startTime, endTime);
         System.out.printf("Added: %s%n", event.toString());
         return event;
     }

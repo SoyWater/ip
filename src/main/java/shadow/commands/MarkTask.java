@@ -20,7 +20,7 @@ public class MarkTask extends Command {
         }
         try {
             int taskIndex = Integer.parseInt(parts[1]) - 1;
-            if (taskIndex >= Storage.getInstance().getTasks().size()) {
+            if (taskIndex >= Storage.getInstance().getTasks().size() || taskIndex < 0) {
                 throw new IllegalArgumentException("You have inputted an invalid task number");
             }
             return new MarkTask(taskIndex);

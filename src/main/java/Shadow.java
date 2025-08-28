@@ -91,11 +91,11 @@ public class Shadow {
             System.out.println("Usage: mark <Task Number>");
         } else {
             try {
-                storage.getTasks().get(Integer.parseInt(parts[1]) - 1).mark();
+                storage.markTask(Integer.parseInt(parts[1]) - 1);
             } catch (NumberFormatException e) {
                 System.out.println("Usage: mark <Task Number>");
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("You have inputted an invalid task number");
+               System.out.println("You have inputted an invalid task number");
             }
         }
     }
@@ -105,7 +105,7 @@ public class Shadow {
             System.out.println("Usage: unmark <Task Number>");
         } else {
             try {
-                storage.getTasks().get(Integer.parseInt(parts[1]) - 1).unmark();
+                storage.unmarkTask(Integer.parseInt(parts[1]) - 1);
             } catch (NumberFormatException e) {
                 System.out.println("Usage: unmark <Task Number>");
             } catch (IndexOutOfBoundsException e) {

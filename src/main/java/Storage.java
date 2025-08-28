@@ -81,4 +81,14 @@ public class Storage {
     public List<Task> getTasks() {
         return this.tasks;
     }
+
+    public void markTask(int i) {
+        this.tasks.get(i).mark();
+        save();
+    }
+
+    public void unmarkTask(int i) {
+        this.tasks.get(i).unmark();
+        save();
+    }
 }

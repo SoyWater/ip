@@ -17,7 +17,7 @@ public class Storage {
     private final Type taskListType = new TypeToken<List<Task>>() {}.getType();
     private List<Task> tasks;
 
-    public Storage(String filePath) {
+    public Storage() {
         String userHome = System.getProperty("user.home");
         Path appDir = Paths.get(userHome, ".shadowData");
         this.filePath = appDir.resolve("tasks.json");
@@ -70,6 +70,12 @@ public class Storage {
     public void addTasks(Task task) {
         tasks.add(task);
         save();
+    }
+
+    public Task removeTask(int i) {
+        Task removed = this.tasks.remove(i);
+        save();
+        return removed;
     }
 
     public List<Task> getTasks() {

@@ -1,7 +1,14 @@
+package shadow.storage;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import shadow.parsers.DateTimeAdapter;
+import shadow.tasks.DeadLine;
+import shadow.tasks.Event;
+import shadow.tasks.Task;
+import shadow.tasks.ToDo;
 
 import java.io.*;
 import java.lang.reflect.Type;

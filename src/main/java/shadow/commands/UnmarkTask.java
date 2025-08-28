@@ -1,3 +1,7 @@
+package shadow.commands;
+
+import shadow.storage.Storage;
+
 public class UnmarkTask extends Command {
 
     private final int taskIndex;
@@ -8,12 +12,12 @@ public class UnmarkTask extends Command {
 
     @Override
     public void execute() {
-        Storage.getInstance().markTask(this.taskIndex);
+        Storage.getInstance().unmarkTask(this.taskIndex);
     }
 
     public static UnmarkTask of(String[] parts) throws IllegalArgumentException {
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Usage: unmark <Task Number>");
+            throw new IllegalArgumentException("Usage: unmark <shadow.tasks.Task Number>");
         } else {
             try {
                 int taskIndex = Integer.parseInt(parts[1]) - 1;
@@ -22,7 +26,7 @@ public class UnmarkTask extends Command {
                 }
                 return new UnmarkTask(taskIndex);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Usage: unmark <Task Number>");
+                throw new IllegalArgumentException("Usage: unmark <shadow.tasks.Task Number>");
             }
         }
     }

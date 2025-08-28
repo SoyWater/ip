@@ -1,3 +1,8 @@
+package shadow.commands;
+
+import shadow.storage.Storage;
+import shadow.tasks.Task;
+
 public class DeleteTask extends Command {
     private final int taskIndex;
 
@@ -13,7 +18,7 @@ public class DeleteTask extends Command {
 
     public static DeleteTask of(String[] parts) throws IllegalArgumentException {
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Usage: delete <Task Number>");
+            throw new IllegalArgumentException("Usage: delete <shadow.tasks.Task Number>");
         } else {
             try {
                 int taskIndex = Integer.parseInt(parts[1]) - 1;
@@ -22,7 +27,7 @@ public class DeleteTask extends Command {
                 }
                 return new DeleteTask(taskIndex);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Usage: delete <Task Number>");
+                throw new IllegalArgumentException("Usage: delete <shadow.tasks.Task Number>");
             }
         }
     }

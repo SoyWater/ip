@@ -1,3 +1,6 @@
+import shadow.commands.Parser;
+import shadow.ui.Ui;
+
 public class Shadow {
     public static void main(String[] args) {
         Ui.getInstance().sayHello();

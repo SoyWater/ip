@@ -1,3 +1,5 @@
+package shadow.ui;
+
 import java.util.Scanner;
 
 public class Ui {

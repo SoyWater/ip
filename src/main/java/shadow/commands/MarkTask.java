@@ -1,3 +1,7 @@
+package shadow.commands;
+
+import shadow.storage.Storage;
+
 public class MarkTask extends Command {
     private final int taskIndex;
 
@@ -12,7 +16,7 @@ public class MarkTask extends Command {
 
     public static MarkTask of(String[] parts) throws IllegalArgumentException {
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Usage: mark <Task Number>");
+            throw new IllegalArgumentException("Usage: mark <shadow.tasks.Task Number>");
         }
         try {
             int taskIndex = Integer.parseInt(parts[1]) - 1;
@@ -21,7 +25,7 @@ public class MarkTask extends Command {
             }
             return new MarkTask(taskIndex);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Usage: mark <Task Number>");
+            throw new IllegalArgumentException("Usage: mark <shadow.tasks.Task Number>");
         }
     }
 }

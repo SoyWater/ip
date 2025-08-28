@@ -1,3 +1,5 @@
+package shadow.tasks;
+
 public class Task {
     private final String name;
     private boolean isMarked = false;

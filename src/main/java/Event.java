@@ -12,12 +12,13 @@ public class Event extends Task {
 
     @Override
     public String toString() {
+        long daysLeft = DateTimeParser.timeLeft(this.startTime);
         return String.format(
-                "[E]%s (from: %s to: %s)",
+                "[E]%s (from: %s to: %s): ",
                 super.toString(),
                 DateTimeParser.format(this.startTime),
                 DateTimeParser.format(this.endTime)
-        );
+        ) + (daysLeft < 0 ? "event passed" : daysLeft + " days left");
     }
 
     public static Event of(String input) {

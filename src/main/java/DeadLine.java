@@ -11,7 +11,9 @@ public class DeadLine extends Task{
 
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), DateTimeParser.format(this.deadline));
+        long timeLeft = DateTimeParser.timeLeft(this.deadline);
+        return String.format("[D]%s (by: %s): ", super.toString(), DateTimeParser.format(this.deadline)) +
+                (timeLeft < 0 ? "deadline passed" : timeLeft + " days left");
     }
 
     public static DeadLine of(String input) {

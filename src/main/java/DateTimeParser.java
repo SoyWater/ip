@@ -1,6 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class DateTimeParser {
@@ -26,5 +27,9 @@ public class DateTimeParser {
 
     public static String format(LocalDateTime dateTime) {
         return dateTime.format(DateTimeParser.formatter);
+    }
+
+    public static long timeLeft(LocalDateTime dateTime) {
+        return ChronoUnit.DAYS.between(LocalDateTime.now(), dateTime);
     }
 }

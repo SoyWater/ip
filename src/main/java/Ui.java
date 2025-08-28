@@ -15,6 +15,10 @@ public class Ui {
         return Ui.ui;
     }
 
+    public void println(String line) {
+        System.out.println(line);
+    }
+
     public String readDemand() {
         return userInput.nextLine();
     }
@@ -49,5 +53,9 @@ public class Ui {
 
     public void printCommandInput() {
         System.out.print("> ");
+    }
+
+    public void printError(String error) {
+        System.out.println(error);
     }
 }

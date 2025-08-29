@@ -48,5 +48,15 @@ public class Task {
         );
     }
 
+    /**
+     * Checks if this task's name contains the specified substring.
+     *
+     * @param match the substring to search for in the task's name
+     * @return true if the name contains the substring; false otherwise
+     */
+    public boolean contains(String match) {
+        return this.name.contains(match);
+    }
+
 
 }

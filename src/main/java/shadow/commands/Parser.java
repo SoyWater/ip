@@ -15,6 +15,7 @@ public class Parser {
         commands.put("unmark", UnmarkTask::of);
         commands.put("list", ListTasks::of);
         commands.put("delete", DeleteTask::of);
+        commands.put("find", FindTask::of);
     }
 
     /**

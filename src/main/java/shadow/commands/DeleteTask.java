@@ -11,7 +11,7 @@ public class DeleteTask extends Command {
      *
      * @param taskIndex the index of the task to be removed
      */
-    public DeleteTask(int taskIndex) {
+    private DeleteTask(int taskIndex) {
         this.taskIndex = taskIndex;
     }
 

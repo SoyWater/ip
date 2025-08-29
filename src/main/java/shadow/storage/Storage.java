@@ -27,6 +27,17 @@ public class Storage {
 
     private static Storage instance;
 
+    /**
+     * Constructs a new {@code Storage} instance.
+     * <p>
+     * Initializes the storage directory and file path in the user's home directory,
+     * sets up Gson serialization with custom adapters for {@link Task} and {@link LocalDateTime},
+     * and attempts to load existing tasks from disk.
+     * </p>
+     * <p>
+     * If the storage directory does not exist, it will be created.
+     * </p>
+     */
     private Storage() {
         String userHome = System.getProperty("user.home");
         Path appDir = Paths.get(userHome, ".shadowData");
@@ -55,6 +66,14 @@ public class Storage {
         load();
     }
 
+    /**
+     * Returns the singleton instance of the {@code Storage} class.
+     * <p>
+     * Creates a new instance if it does not already exist.
+     * </p>
+     *
+     * @return the singleton {@code Storage} instance
+     */
     public static Storage getInstance() {
         if (Storage.instance == null) {
             Storage.instance = new Storage();
@@ -62,6 +81,13 @@ public class Storage {
         return Storage.instance;
     }
 
+    /**
+     * Loads tasks from the JSON file into memory.
+     * <p>
+     * If the file does not exist, no action is taken.
+     * If an error occurs during reading, an error message is printed to standard error.
+     * </p>
+     */
     private void load() {
         if (!Files.exists(filePath)) {
             return;
@@ -77,6 +103,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the current list of tasks to the JSON file.
+     * <p>
+     * If an error occurs during writing, an error message is printed to standard error.
+     * </p>
+     */
     public void save() {
         try (Writer writer = Files.newBufferedWriter(filePath)) {
             gson.toJson(tasks, taskListType, writer);
@@ -85,26 +117,55 @@ public class Storage {
         }
     }
 
+    /**
+     * Adds a new task to the list and persists the updated list.
+     *
+     * @param task the {@link Task} to add
+     */
     public void addTasks(Task task) {
         tasks.add(task);
         save();
     }
 
+    /**
+     * Removes the task at the specified index and persists the updated list.
+     *
+     * @param i the index of the task to remove
+     * @return the removed {@link Task}
+     * @throws IndexOutOfBoundsException if the index is invalid
+     */
     public Task removeTask(int i) {
         Task removed = this.tasks.remove(i);
         save();
         return removed;
     }
 
+    /**
+     * Returns the current list of tasks stored in memory.
+     *
+     * @return a {@link List} of {@link Task} objects
+     */
     public List<Task> getTasks() {
         return this.tasks;
     }
 
+    /**
+     * Marks the task at the specified index as done and persists the updated list.
+     *
+     * @param i the index of the task to mark
+     * @throws IndexOutOfBoundsException if the index is invalid
+     */
     public void markTask(int i) {
         this.tasks.get(i).mark();
         save();
     }
 
+    /**
+     * Unmarks the task at the specified index as not done and persists the updated list.
+     *
+     * @param i the index of the task to unmark
+     * @throws IndexOutOfBoundsException if the index is invalid
+     */
     public void unmarkTask(int i) {
         this.tasks.get(i).unmark();
         save();

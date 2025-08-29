@@ -20,6 +20,20 @@ public class DeadLine extends Task {
                 (timeLeft < 0 ? "deadline passed" : timeLeft + " days left");
     }
 
+    /**
+     * Creates a new {@link DeadLine} task from the given input string.
+     * <p>
+     * Expects the input to contain a task name and a deadline separated by the "/by" delimiter.
+     * Parses the deadline date-time using {@link DateTimeParser}.
+     * If the input is {@code null} or improperly formatted, throws an {@link IllegalArgumentException}
+     * with usage instructions.
+     * Upon successful creation, the deadline task is printed to the console.
+     * </p>
+     *
+     * @param input the raw user input containing the task description and deadline, separated by "/by"
+     * @return a new {@code DeadLine} instance representing the task with its deadline
+     * @throws IllegalArgumentException if the input is {@code null} or missing the "/by" part
+     */
     public static DeadLine of(String input) {
         if (input == null) {
             throw new IllegalArgumentException("Usage: deadline <taskName> /by <by>");

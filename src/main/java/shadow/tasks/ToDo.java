@@ -11,6 +11,18 @@ public class ToDo extends Task {
         return String.format("[T]%s", super.toString());
     }
 
+    /**
+     * Creates a new {@link ToDo} task from the given input string.
+     * <p>
+     * Trims the input and constructs a {@code ToDo} object using it as the task name.
+     * If the input is {@code null}, an {@link IllegalArgumentException} is thrown to indicate incorrect usage.
+     * Upon successful creation, the task is printed to the console.
+     * </p>
+     *
+     * @param input the raw user input containing the task description
+     * @return a new {@code ToDo} instance representing the task
+     * @throws IllegalArgumentException if the input is {@code null}
+     */
     public static ToDo of(String input) {
         if (input == null) {
             throw new IllegalArgumentException("Usage: todo <taskName>");

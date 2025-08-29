@@ -16,6 +16,16 @@ public class ListTasks extends Command {
         }
     }
 
+    /**
+     * Returns the singleton instance of the {@code ListTasks} command.
+     * <p>
+     * Creates a new instance if it does not already exist.
+     * </p>
+     *
+     * @param parts the command parts parsed from user input (ignored in this method)
+     * @return the singleton {@code ListTasks} instance
+     * @throws IllegalArgumentException never thrown by this method but declared for consistency
+     */
     public static ListTasks of(String[] parts) throws IllegalArgumentException {
         if (ListTasks.instance == null) {
             ListTasks.instance = new ListTasks();

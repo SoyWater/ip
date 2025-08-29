@@ -25,6 +25,21 @@ public class Event extends Task {
         ) + (daysLeft < 0 ? "event passed" : daysLeft + " days left");
     }
 
+    /**
+     * Creates a new {@link Event} task from the given input string.
+     * <p>
+     * Expects the input to contain a task name, a start time, and an end time,
+     * separated by the delimiters "/from" and "/to" respectively.
+     * Parses the start and end times using {@link DateTimeParser}.
+     * If the input is {@code null} or improperly formatted, throws an {@link IllegalArgumentException}
+     * with usage instructions.
+     * Upon successful creation, the event task is printed to the console.
+     * </p>
+     *
+     * @param input the raw user input containing the task description, start time, and end time
+     * @return a new {@code Event} instance representing the task with its start and end times
+     * @throws IllegalArgumentException if the input is {@code null} or missing required delimiters
+     */
     public static Event of(String input) {
         if (input == null) {
             throw new IllegalArgumentException("Usage: event <taskName> /from <from> /to <to>");

@@ -5,10 +5,20 @@ import shadow.storage.Storage;
 public class MarkTask extends Command {
     private final int taskIndex;
 
+    /**
+     * Private constructor to create a MarkTask command for marking a task as done.
+     *
+     * Instances should be created via the factory method {@code MarkTask.create(int)}.
+     *
+     * @param taskIndex the index of the task to be marked as done
+     */
     private MarkTask(int taskIndex) {
         this.taskIndex = taskIndex;
     }
 
+    /**
+     * Executes the mark operation by marking the specified task as done in storage.
+     */
     @Override
     public void execute() {
         Storage.getInstance().markTask(this.taskIndex);

@@ -2,6 +2,11 @@ package shadow.tasks;
 
 public class ToDo extends Task {
 
+    /**
+     * Constructs a new ToDo task with the specified name.
+     *
+     * @param name the name or description of the ToDo task
+     */
     public ToDo(String name) {
         super(name);
     }

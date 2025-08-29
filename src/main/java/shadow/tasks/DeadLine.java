@@ -8,6 +8,12 @@ public class DeadLine extends Task {
 
     private final LocalDateTime deadline;
 
+    /**
+     * Constructs a new DeadLine task with the specified name and deadline.
+     *
+     * @param name the name or description of the task
+     * @param deadline the date and time by which the task must be completed
+     */
     public DeadLine(String name, LocalDateTime deadline) {
         super(name);
         this.deadline = deadline;

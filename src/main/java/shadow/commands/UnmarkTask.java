@@ -6,10 +6,20 @@ public class UnmarkTask extends Command {
 
     private final int taskIndex;
 
+    /**
+     * Private constructor to create an UnmarkTask command for unmarking a task as not done.
+     * <p>
+     * Instances should be created via the factory method {@code UnmarkTask.create(int)}.
+     *
+     * @param taskIndex the index of the task to be unmarked
+     */
     private UnmarkTask(int taskIndex) {
         this.taskIndex = taskIndex;
     }
 
+    /**
+     * Executes the unmark operation by marking the specified task as not done in storage.
+     */
     @Override
     public void execute() {
         Storage.getInstance().unmarkTask(this.taskIndex);

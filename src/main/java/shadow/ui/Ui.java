@@ -6,6 +6,12 @@ public class Ui {
     private static Ui ui;
     private final Scanner userInput;
 
+    /**
+     * Private constructor for the Ui class.
+     * Initializes the user input scanner.
+     * <p>
+     * This constructor is private to enforce a singleton pattern or controlled instantiation.
+     */
     private Ui() {
          this.userInput = new Scanner(System.in);
     }
@@ -15,7 +21,7 @@ public class Ui {
      * <p>
      * Creates a new instance if it does not already exist.
      * </p>
-     *
+
      * @return the singleton {@code Ui} instance
      */
     public static Ui getInstance() {

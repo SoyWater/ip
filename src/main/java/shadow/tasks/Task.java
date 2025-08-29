@@ -4,6 +4,11 @@ public class Task {
     private final String name;
     private boolean isMarked = false;
 
+    /**
+     * Constructs a new Task with the specified name.
+     *
+     * @param name the name or description of the task
+     */
     public Task(String name) {
         this.name = name;
     }

@@ -6,10 +6,19 @@ import shadow.tasks.Task;
 public class DeleteTask extends Command {
     private final int taskIndex;
 
+    /**
+     * Creates a new DeleteTask command to remove a task at the specified index.
+     *
+     * @param taskIndex the index of the task to be removed
+     */
     public DeleteTask(int taskIndex) {
         this.taskIndex = taskIndex;
     }
 
+    /**
+     * Executes the delete operation by removing the task at the given index
+     * from storage, then prints a confirmation message.
+     */
     @Override
     public void execute() {
         Task removed = Storage.getInstance().removeTask(this.taskIndex);

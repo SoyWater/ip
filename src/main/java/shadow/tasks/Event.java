@@ -8,6 +8,13 @@ public class Event extends Task {
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
 
+    /**
+     * Constructs a new Event task with the specified name, start time, and end time.
+     *
+     * @param name the name or description of the event
+     * @param startTime the start date and time of the event
+     * @param endTime the end date and time of the event
+     */
     public Event(String name, LocalDateTime startTime, LocalDateTime endTime) {
         super(name);
         this.startTime = startTime;

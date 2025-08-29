@@ -6,9 +6,17 @@ import shadow.ui.Ui;
 public class ListTasks extends Command {
     private static ListTasks instance;
 
+    /**
+     * Private constructor to prevent direct instantiation.
+     * ListTasks is a singleton.
+     */
     private ListTasks() {
     }
 
+    /**
+     * Executes the list operation by printing all tasks stored in Storage.
+     * Each task is displayed with its index (starting from 1) and description.
+     */
     @Override
     public void execute() {
         for (int i = 0; i < Storage.getInstance().getTasks().size(); ++i) {

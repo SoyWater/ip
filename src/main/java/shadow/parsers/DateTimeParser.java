@@ -16,6 +16,17 @@ public class DateTimeParser {
     );
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy, EEEE, HH:mm");
 
+    /**
+     * Parses a date-time string into a {@link LocalDateTime} object.
+     * <p>
+     * Tries multiple predefined formats until one successfully parses the input.
+     * If none match, throws an {@link IllegalArgumentException}.
+     * </p>
+     *
+     * @param input the date-time string to parse
+     * @return the parsed {@link LocalDateTime} object
+     * @throws IllegalArgumentException if the input does not match any supported format
+     */
     public static LocalDateTime parse(String input) {
         for (DateTimeFormatter formatter : DateTimeParser.formatters) {
            try {
@@ -27,10 +38,22 @@ public class DateTimeParser {
         throw new IllegalArgumentException("Unrecognized date/time format: " + input);
     }
 
+    /**
+     * Formats a {@link LocalDateTime} object into a string using a consistent pattern.
+     *
+     * @param dateTime the {@link LocalDateTime} to format
+     * @return the formatted date-time string
+     */
     public static String format(LocalDateTime dateTime) {
         return dateTime.format(DateTimeParser.formatter);
     }
 
+    /**
+     * Calculates the number of whole days between the current time and the given {@link LocalDateTime}.
+     *
+     * @param dateTime the target date-time to compare with now
+     * @return the number of days left (positive if in the future, negative if in the past)
+     */
     public static long timeLeft(LocalDateTime dateTime) {
         return ChronoUnit.DAYS.between(LocalDateTime.now(), dateTime);
     }

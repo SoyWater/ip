@@ -11,6 +11,17 @@ import java.time.format.DateTimeFormatter;
 public class DateTimeAdapter extends TypeAdapter<LocalDateTime> {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
+    /**
+     * Serializes a {@link LocalDateTime} object to JSON.
+     * <p>
+     * Writes the date-time as a formatted string using the defined formatter.
+     * If the value is {@code null}, writes a JSON null value.
+     * </p>
+     *
+     * @param out the {@link JsonWriter} to write to
+     * @param value the {@link LocalDateTime} value to serialize, may be {@code null}
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     public void write(JsonWriter out, LocalDateTime value) throws IOException {
         if (value == null) {
@@ -20,6 +31,16 @@ public class DateTimeAdapter extends TypeAdapter<LocalDateTime> {
         }
     }
 
+    /**
+     * Deserializes a {@link LocalDateTime} object from JSON.
+     * <p>
+     * Reads a date-time string from JSON and parses it using the defined formatter.
+     * </p>
+     *
+     * @param in the {@link JsonReader} to read from
+     * @return the parsed {@link LocalDateTime} object
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     public LocalDateTime read(JsonReader in) throws IOException {
         String str = in.nextString();

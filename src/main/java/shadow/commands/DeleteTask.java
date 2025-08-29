@@ -16,6 +16,30 @@ public class DeleteTask extends Command {
         System.out.printf("Removed: %s%n", removed.toString());
     }
 
+    /**
+     * Creates an instance of {@link DeleteTask} based on the provided input parts.
+     * <p>
+     * This factory method expects exactly two input elements: the command keyword
+     * (e.g., "delete") and the task number to delete. It parses the task number,
+     * validates that it refers to a valid task in {@link Storage}, and constructs
+     * the {@code DeleteTask} accordingly.
+     * </p>
+     *
+     * @param parts an array of strings where:
+     *              <ul>
+     *                  <li>{@code parts[0]} is expected to be the "delete" command keyword</li>
+     *                  <li>{@code parts[1]} is the task number to delete (1-based index)</li>
+     *              </ul>
+     *
+     * @return a new {@code DeleteTask} instance with the validated task index
+     *
+     * @throws IllegalArgumentException if:
+     * <ul>
+     *     <li>{@code parts.length != 2}</li>
+     *     <li>{@code parts[1]} is not a valid number</li>
+     *     <li>the task number is out of bounds</li>
+     * </ul>
+     */
     public static DeleteTask of(String[] parts) throws IllegalArgumentException {
         if (parts.length != 2) {
             throw new IllegalArgumentException("Usage: delete <shadow.tasks.Task Number>");

@@ -1,16 +1,8 @@
 package shadow.storage;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import shadow.parsers.DateTimeAdapter;
-import shadow.tasks.DeadLine;
-import shadow.tasks.Event;
-import shadow.tasks.Task;
-import shadow.tasks.ToDo;
-
-import java.io.*;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,13 +11,31 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
+
+import shadow.parsers.DateTimeAdapter;
+import shadow.tasks.DeadLine;
+import shadow.tasks.Event;
+import shadow.tasks.Task;
+import shadow.tasks.ToDo;
+
+
+/**
+ * A singleton class responsible for managing the storage of tasks.
+ * Provides methods to load, save, add, remove, and modify tasks.
+ * Tasks are persisted in a JSON file in the user's home directory.
+ */
 public class Storage {
+    private static Storage instance;
+
     private final Gson gson;
     private final Path filePath;
     private final Type taskListType = new TypeToken<List<Task>>() {}.getType();
     private List<Task> tasks;
 
-    private static Storage instance;
 
     /**
      * Constructs a new {@code Storage} instance.

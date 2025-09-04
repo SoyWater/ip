@@ -24,8 +24,10 @@ public class MarkTask extends Command {
      * Executes the mark operation by marking the specified task as done in storage.
      */
     @Override
-    public void execute() {
+    public String execute() {
         Storage.getInstance().markTask(this.taskIndex);
+        return "Noted, the following task has been marked:\n"
+                + Storage.getInstance().getTasks().get(this.taskIndex).toString();
     }
 
     /**

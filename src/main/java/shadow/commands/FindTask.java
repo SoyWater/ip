@@ -29,14 +29,16 @@ public class FindTask extends Command {
      * Otherwise, it displays the list of found tasks with their corresponding index.
      */
     @Override
-    public void execute() {
+    public String execute() {
         if (tasks.isEmpty()) {
             Ui.getInstance().println("Found nothing");
-            return;
+            return "You don't have any tasks matching your search";
         }
+        StringBuilder sb = new StringBuilder("Found:\n");
         for (int i = 0; i < this.tasks.size(); ++i) {
-            Ui.getInstance().println(String.format("%d: %s", i + 1, this.tasks.get(i)));
+            sb.append(String.format("%d: %s\n", i + 1, this.tasks.get(i)));
         }
+        return sb.toString();
     }
 
     /**

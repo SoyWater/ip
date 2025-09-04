@@ -2,6 +2,10 @@ package shadow.commands;
 
 import shadow.storage.Storage;
 
+/**
+ * Represents the command to unmark a task as not done.
+ * This command interacts with the {@link Storage} class to update the task status.
+ */
 public class UnmarkTask extends Command {
 
     private final int taskIndex;
@@ -43,11 +47,11 @@ public class UnmarkTask extends Command {
      * @return a new {@code UnmarkTask} instance with the validated task index
      *
      * @throws IllegalArgumentException if:
-     * <ul>
-     *     <li>{@code parts.length != 2}</li>
-     *     <li>{@code parts[1]} is not a valid number</li>
-     *     <li>the task number is out of bounds</li>
-     * </ul>
+     *     <ul>
+     *         <li>{@code parts.length != 2}</li>
+     *         <li>{@code parts[1]} is not a valid number</li>
+     *         <li>the task number is out of bounds</li>
+     *     </ul>
      */
     public static UnmarkTask of(String[] parts) throws IllegalArgumentException {
         if (parts.length != 2) {

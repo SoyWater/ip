@@ -1,9 +1,18 @@
 package shadow.tasks;
 
-import shadow.parsers.DateTimeParser;
-
 import java.time.LocalDateTime;
 
+import shadow.parsers.DateTimeParser;
+
+/**
+ * Represents an event task with a name, start time, and end time.
+ * <p>
+ * An Event is a subclass of {@link Task} that includes additional
+ * attributes for start and end date-time values. It provides functionality
+ * to format its details into a string representation, calculate the
+ * time remaining until the event starts, and validate input parsing
+ * for creating new event instances.
+ */
 public class Event extends Task {
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
@@ -12,8 +21,8 @@ public class Event extends Task {
      * Constructs a new Event task with the specified name, start time, and end time.
      *
      * @param name the name or description of the event
-     * @param startTime the start date and time of the event
-     * @param endTime the end date and time of the event
+     * @param startTime the date and time when the event starts
+     * @param endTime the date and time when the event ends
      */
     public Event(String name, LocalDateTime startTime, LocalDateTime endTime) {
         super(name);
@@ -62,7 +71,7 @@ public class Event extends Task {
         LocalDateTime startTime = DateTimeParser.parse(toSplit[0].trim());
         LocalDateTime endTime = DateTimeParser.parse(toSplit[1].trim());
         Event event = new Event(fromSplit[0].trim(), startTime, endTime);
-        System.out.printf("Added: %s%n", event.toString());
+        System.out.printf("Added: %s%n", event);
         return event;
     }
 }

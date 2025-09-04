@@ -1,13 +1,26 @@
 package shadow.parsers;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+
+/**
+ * A custom {@link TypeAdapter} implementation for serializing and deserializing
+ * {@link LocalDateTime} objects using Gson.
+ * <p>
+ * This adapter converts {@link LocalDateTime} instances into ISO-8601 formatted
+ * strings for JSON serialization and parses ISO-8601 formatted strings back into
+ * {@link LocalDateTime} objects during deserialization.
+ * <p>
+ * It is designed to be used with {@link GsonBuilder}'s {@code registerTypeAdapter}
+ * method for seamless integration into the serialization and deserialization workflow.
+ */
 public class DateTimeAdapter extends TypeAdapter<LocalDateTime> {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 

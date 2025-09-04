@@ -4,13 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+ * A factory class responsible for creating instances of different types of {@link Task}.
+ * The factory determines the type of task to create based on input parameters
+ * and maps task types to their respective creation methods.
+ */
 public class TaskFactory {
     private static final Map<String, Function<String, Task>> taskCreators = new HashMap<>();
 
     static {
         taskCreators.put("todo", ToDo::of);
         taskCreators.put("deadline", DeadLine::of);
-        taskCreators.put ("event", Event::of);
+        taskCreators.put("event", Event::of);
     }
     /**
      * Creates a {@link Task} instance based on the provided input parts.

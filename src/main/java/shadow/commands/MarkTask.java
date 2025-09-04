@@ -2,12 +2,16 @@ package shadow.commands;
 
 import shadow.storage.Storage;
 
+/**
+ * Represents a command to mark a specific task as done.
+ * This class encapsulates the logic for identifying the task to be marked
+ * based on its index and delegating the marking operation to {@code Storage}.
+ */
 public class MarkTask extends Command {
     private final int taskIndex;
 
     /**
      * Private constructor to create a MarkTask command for marking a task as done.
-     *
      * Instances should be created via the factory method {@code MarkTask.create(int)}.
      *
      * @param taskIndex the index of the task to be marked as done
@@ -35,7 +39,7 @@ public class MarkTask extends Command {
      *
      * @param parts the command parts parsed from user input
      * @return a new {@code MarkTask} instance targeting the specified task index
-     * @throws IllegalArgumentException if the input format is invalid or the task number is out of range
+     * @throws IllegalArgumentException if the input format is invalid, or the task number is out of range
      */
     public static MarkTask of(String[] parts) throws IllegalArgumentException {
         if (parts.length != 2) {

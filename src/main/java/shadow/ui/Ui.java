@@ -2,6 +2,11 @@ package shadow.ui;
 
 import java.util.Scanner;
 
+/**
+ * The {@code Ui} class provides an interface for interacting with the user through console input and output.
+ * It is implemented as a singleton to ensure only one instance is created and used throughout the application.
+ * This class manages user input, displays messages, and handles the formatting of console output.
+ */
 public class Ui {
     private static Ui ui;
     private final Scanner userInput;
@@ -13,7 +18,7 @@ public class Ui {
      * This constructor is private to enforce a singleton pattern or controlled instantiation.
      */
     private Ui() {
-         this.userInput = new Scanner(System.in);
+        this.userInput = new Scanner(System.in);
     }
 
     /**
@@ -21,7 +26,6 @@ public class Ui {
      * <p>
      * Creates a new instance if it does not already exist.
      * </p>
-
      * @return the singleton {@code Ui} instance
      */
     public static Ui getInstance() {
@@ -58,7 +62,7 @@ public class Ui {
 
     /**
      * Prints a greeting message along with ASCII art to the console.
-     * Prompts the user for input afterwards.
+     * Prompts the user for input afterward.
      */
     public void sayHello() {
         String asciiArt =

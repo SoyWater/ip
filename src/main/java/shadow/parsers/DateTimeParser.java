@@ -6,6 +6,14 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+/**
+ * A utility class providing methods to parse, format, and calculate time-related operations
+ * with {@link LocalDateTime} objects.
+ * <p>
+ * This class handles multiple recognized date-time formats, allowing flexible parsing
+ * of input strings. It also provides functionality to convert {@link LocalDateTime} objects
+ * to a consistent string representation and compare dates for time calculations.
+ */
 public class DateTimeParser {
     private static final List<DateTimeFormatter> formatters = List.of(
             DateTimeFormatter.ISO_LOCAL_DATE_TIME,
@@ -29,11 +37,11 @@ public class DateTimeParser {
      */
     public static LocalDateTime parse(String input) {
         for (DateTimeFormatter formatter : DateTimeParser.formatters) {
-           try {
-               return LocalDateTime.parse(input, formatter);
-           } catch (DateTimeParseException e) {
+            try {
+                return LocalDateTime.parse(input, formatter);
+            } catch (DateTimeParseException e) {
                // continue
-           }
+            }
         }
         throw new IllegalArgumentException("Unrecognized date/time format: " + input);
     }

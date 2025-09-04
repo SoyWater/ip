@@ -1,11 +1,12 @@
 package shadow.commands;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import shadow.storage.Storage;
 import shadow.tasks.Task;
 import shadow.ui.Ui;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Represents a command that finds and displays tasks matching a given keyword.
@@ -42,7 +43,7 @@ public class FindTask extends Command {
      * Creates a new FindTask based on the input command parts.
      *
      * @param parts the parts of the command input, where parts[1] should be the search string
-     * @return a FindTask object with filtered tasks
+     * @return findTask object with filtered tasks
      * @throws IllegalArgumentException if the command format is invalid
      */
     public static FindTask of(String[] parts) throws IllegalArgumentException {

@@ -1,9 +1,13 @@
 package shadow.tasks;
 
-import shadow.parsers.DateTimeParser;
-
 import java.time.LocalDateTime;
 
+import shadow.parsers.DateTimeParser;
+
+/**
+ * Represents a task with a specific deadline, extending the functionality of the {@link Task} class.
+ * A DeadLine task includes a deadline date and time by which the task is expected to be completed.
+ */
 public class DeadLine extends Task {
 
     private final LocalDateTime deadline;
@@ -22,8 +26,8 @@ public class DeadLine extends Task {
     @Override
     public String toString() {
         long timeLeft = DateTimeParser.timeLeft(this.deadline);
-        return String.format("[D]%s (by: %s): ", super.toString(), DateTimeParser.format(this.deadline)) +
-                (timeLeft < 0 ? "deadline passed" : timeLeft + " days left");
+        return String.format("[D]%s (by: %s): ", super.toString(), DateTimeParser.format(this.deadline))
+                + (timeLeft < 0 ? "deadline passed" : timeLeft + " days left");
     }
 
     /**
@@ -44,13 +48,13 @@ public class DeadLine extends Task {
         if (input == null) {
             throw new IllegalArgumentException("Usage: deadline <taskName> /by <by>");
         }
-        String[] deadlineDetails= input.split("/by", 2);
+        String[] deadlineDetails = input.split("/by", 2);
         if (deadlineDetails.length < 2) {
             throw new IllegalArgumentException("Usage: deadline <taskName> /by <by>");
         }
         LocalDateTime deadlineDateTime = DateTimeParser.parse(deadlineDetails[1].trim());
         DeadLine deadline = new DeadLine(deadlineDetails[0].trim(), deadlineDateTime);
-        System.out.printf("Added: %s%n", deadline.toString());
+        System.out.printf("Added: %s%n", deadline);
         return deadline;
     }
 }

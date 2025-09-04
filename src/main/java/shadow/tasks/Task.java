@@ -1,5 +1,9 @@
 package shadow.tasks;
 
+/**
+ * Represents a task with a name and a completion status.
+ * A task can be marked as completed or unmarked if it is not completed.
+ */
 public class Task {
     private final String name;
     private boolean isMarked = false;
@@ -23,7 +27,7 @@ public class Task {
     public void mark() {
         System.out.println("Noted, the following task has been marked:");
         this.isMarked = true;
-        System.out.println(this.toString());
+        System.out.println(this);
     }
 
     /**
@@ -36,7 +40,7 @@ public class Task {
     public void unmark() {
         System.out.println("Noted, the following task has been unmarked:");
         this.isMarked = false;
-        System.out.println(this.toString());
+        System.out.println(this);
     }
 
     @Override

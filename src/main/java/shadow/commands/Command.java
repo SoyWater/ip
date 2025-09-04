@@ -1,5 +1,10 @@
 package shadow.commands;
 
+/**
+ * Represents an abstract command in the application.
+ * Subclasses of this class define specific actions to be executed.
+ * Provides a default behavior for determining whether executing this command should terminate the application.
+ */
 public abstract class Command {
     /**
      * Executes the main logic or action of this command.

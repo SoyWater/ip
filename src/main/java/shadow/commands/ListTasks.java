@@ -3,6 +3,12 @@ package shadow.commands;
 import shadow.storage.Storage;
 import shadow.ui.Ui;
 
+/**
+ * Represents a command for listing all tasks currently stored in the application.
+ * <p>
+ * {@code ListTasks} is a singleton class which extends the {@code Command} abstract class.
+ * It provides functionality to display all tasks with their respective indices and descriptions.
+ */
 public class ListTasks extends Command {
     private static ListTasks instance;
 

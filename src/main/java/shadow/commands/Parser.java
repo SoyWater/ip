@@ -1,12 +1,19 @@
 package shadow.commands;
 
-import shadow.storage.Storage;
-import shadow.tasks.TaskFactory;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import shadow.storage.Storage;
+import shadow.tasks.TaskFactory;
+
+
+/**
+ * The {@code Parser} class is responsible for interpreting user input and deciding
+ * whether it represents a command to be executed or a task to be created. This class
+ * serves as the primary mechanism for converting user input into executable actions
+ * or new tasks within the application.
+ */
 public class Parser {
     private static final Map<String, Function<String[], Command>> commands = new HashMap<>();
 
@@ -30,7 +37,9 @@ public class Parser {
      * @param demand the raw input string entered by the user
      */
     public static void parse(String demand) {
-        if (demand.trim().isEmpty()) return;
+        if (demand.trim().isEmpty()) {
+            return;
+        }
         String[] parts = demand.split(" ", 2);
         parts[0] = parts[0].toLowerCase();
 

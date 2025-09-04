@@ -3,6 +3,10 @@ package shadow.commands;
 import shadow.storage.Storage;
 import shadow.tasks.Task;
 
+/**
+ * Represents a command to delete a specific task from the task list in storage.
+ * This command removes the task at the specified index and provides feedback to the user upon successful removal.
+ */
 public class DeleteTask extends Command {
     private final int taskIndex;
 
@@ -43,11 +47,11 @@ public class DeleteTask extends Command {
      * @return a new {@code DeleteTask} instance with the validated task index
      *
      * @throws IllegalArgumentException if:
-     * <ul>
-     *     <li>{@code parts.length != 2}</li>
-     *     <li>{@code parts[1]} is not a valid number</li>
-     *     <li>the task number is out of bounds</li>
-     * </ul>
+     *     <ul>
+     *         <li>{@code parts.length != 2}</li>
+     *         <li>{@code parts[1]} is not a valid number</li>
+     *         <li>the task number is out of bounds</li>
+     *     </ul>
      */
     public static DeleteTask of(String[] parts) throws IllegalArgumentException {
         if (parts.length != 2) {

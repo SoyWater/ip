@@ -70,8 +70,6 @@ public class Event extends Task {
         }
         LocalDateTime startTime = DateTimeParser.parse(toSplit[0].trim());
         LocalDateTime endTime = DateTimeParser.parse(toSplit[1].trim());
-        Event event = new Event(fromSplit[0].trim(), startTime, endTime);
-        System.out.printf("Added: %s%n", event);
-        return event;
+        return new Event(fromSplit[0].trim(), startTime, endTime);
     }
 }

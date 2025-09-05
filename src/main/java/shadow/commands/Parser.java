@@ -4,10 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import shadow.storage.Storage;
-import shadow.tasks.TaskFactory;
-
-
 /**
  * The {@code Parser} class is responsible for interpreting user input and deciding
  * whether it represents a command to be executed or a task to be created. This class
@@ -30,15 +26,15 @@ public class Parser {
     }
 
     /**
-     * Parses and processes a user input string to determine whether it is a command
-     * or a task creation request.
-     * <p>
-     * If the input matches a known command (e.g., "delete", "unmark", etc.), it is executed via {@code handleCommand}.
-     * Otherwise, the input is passed to {@link TaskFactory#createTask(String[])} to create a new task, which is then
-     * added to {@link Storage}.
-     * </p>
+     * Parses the given string input to determine the appropriate command to execute.
+     * The method analyzes the command keyword (the first word in the input) and
+     * matches it with a predefined set of commands. If the command is found,
+     * it applies the associated function to interpret the input and generate the appropriate Command object.
+     * If the input is empty or unrecognized, it returns a singleton instance of {@code UnknownCommand}.
      *
-     * @param demand the raw input string entered by the user
+     * @param demand the user input string representing the command and its arguments
+     * @return a {@code Command} object corresponding to the parsed input;
+     *         returns {@code UnknownCommand} if the command is empty or unrecognized
      */
     public static Command parse(String demand) {
         if (demand.trim().isEmpty()) {

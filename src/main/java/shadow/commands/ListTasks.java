@@ -1,7 +1,6 @@
 package shadow.commands;
 
 import shadow.storage.Storage;
-import shadow.ui.Ui;
 
 /**
  * Represents a command for listing all tasks currently stored in the application.

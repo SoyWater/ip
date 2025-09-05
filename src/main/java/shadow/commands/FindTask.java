@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import shadow.storage.Storage;
 import shadow.tasks.Task;
-import shadow.ui.Ui;
+
 
 
 /**
@@ -31,7 +31,6 @@ public class FindTask extends Command {
     @Override
     public String execute() {
         if (tasks.isEmpty()) {
-            Ui.getInstance().println("Found nothing");
             return "You don't have any tasks matching your search";
         }
         StringBuilder sb = new StringBuilder("Found:\n");

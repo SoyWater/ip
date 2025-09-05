@@ -1,9 +1,9 @@
+import shadow.commands.Command;
 import shadow.commands.Parser;
 import shadow.ui.Ui;
 
 public class Shadow {
     public static void main(String[] args) {
-        Ui.getInstance().sayHello();
         while (true) {
             try {
                 Ui.getInstance().printLine();
@@ -19,6 +19,11 @@ public class Shadow {
             }
         }
         Ui.getInstance().closeReader();
+    }
+
+    public String getResponse(String demand) {
+        Command command = Parser.parse(demand);
+        return "hi";
     }
 }
 

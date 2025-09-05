@@ -57,7 +57,7 @@ public class UnmarkTask extends Command {
      */
     public static UnmarkTask of(String[] parts) throws IllegalArgumentException {
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Usage: unmark <shadow.tasks.Task Number>");
+            throw new IllegalArgumentException("Usage: unmark <taskNumber>");
         } else {
             try {
                 int taskIndex = Integer.parseInt(parts[1]) - 1;

@@ -45,7 +45,7 @@ public class MarkTask extends Command {
      */
     public static MarkTask of(String[] parts) throws IllegalArgumentException {
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Usage: mark <shadow.tasks.Task Number>");
+            throw new IllegalArgumentException("Usage: mark <taskNumber>");
         }
         try {
             int taskIndex = Integer.parseInt(parts[1]) - 1;

@@ -53,29 +53,4 @@ public class Parser {
         }
         return command.apply(parts);
     }
-
-    /**
-     * Attempts to handle the parsed input as a command.
-     * <p>
-     * If the first part of the input matches a known command keyword, the corresponding
-     * command is created and executed.
-     * </p>
-     *
-     * @param parts an array of strings where:
-     *              <ul>
-     *                  <li>{@code parts[0]} is the command keyword</li>
-     *                  <li>{@code parts[1]} (optional) is the command argument</li>
-     *              </ul>
-     *
-     * @return {@code true} if the input was successfully handled as a command,
-     *         {@code false} if the keyword is not recognized
-     */
-    private static boolean handleCommand(String[] parts) {
-        Function<String[], Command> command = commands.get(parts[0]);
-        if (command == null) {
-            return false;
-        }
-        command.apply(parts).execute();
-        return true;
-    }
 }

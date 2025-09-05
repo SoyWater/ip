@@ -23,6 +23,10 @@ public class Parser {
         commands.put("list", ListTasks::of);
         commands.put("delete", DeleteTask::of);
         commands.put("find", FindTask::of);
+        commands.put("todo", CreateToDo::of);
+        commands.put("event", CreateEvent::of);
+        commands.put("deadline", CreateDeadLine::of);
+        commands.put("bye", parts -> new TerminateCommand());
     }
 
     /**
@@ -36,21 +40,18 @@ public class Parser {
      *
      * @param demand the raw input string entered by the user
      */
-    public static void parse(String demand) {
+    public static Command parse(String demand) {
         if (demand.trim().isEmpty()) {
-            return;
+            return UnknownCommand.getInstance();
         }
         String[] parts = demand.split(" ", 2);
         parts[0] = parts[0].toLowerCase();
 
-        try {
-            if (handleCommand(parts)) {
-                return;
-            }
-            Storage.getInstance().addTasks(TaskFactory.createTask(parts));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        Function<String[], Command> command = commands.get(parts[0]);
+        if (command == null) {
+            return UnknownCommand.getInstance();
         }
+        return command.apply(parts);
     }
 
     /**

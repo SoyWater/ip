@@ -24,8 +24,10 @@ public class MarkTask extends Command {
      * Executes the mark operation by marking the specified task as done in storage.
      */
     @Override
-    public void execute() {
+    public String execute() {
         Storage.getInstance().markTask(this.taskIndex);
+        return "Noted, the following task has been marked:\n"
+                + Storage.getInstance().getTasks().get(this.taskIndex).toString();
     }
 
     /**
@@ -43,7 +45,7 @@ public class MarkTask extends Command {
      */
     public static MarkTask of(String[] parts) throws IllegalArgumentException {
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Usage: mark <shadow.tasks.Task Number>");
+            throw new IllegalArgumentException("Usage: mark <taskNumber>");
         }
         try {
             int taskIndex = Integer.parseInt(parts[1]) - 1;

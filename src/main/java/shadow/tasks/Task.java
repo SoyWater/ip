@@ -25,9 +25,7 @@ public class Task {
      * </p>
      */
     public void mark() {
-        System.out.println("Noted, the following task has been marked:");
         this.isMarked = true;
-        System.out.println(this);
     }
 
     /**
@@ -38,9 +36,7 @@ public class Task {
      * </p>
      */
     public void unmark() {
-        System.out.println("Noted, the following task has been unmarked:");
         this.isMarked = false;
-        System.out.println(this);
     }
 
     @Override

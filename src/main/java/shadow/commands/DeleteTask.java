@@ -24,9 +24,9 @@ public class DeleteTask extends Command {
      * from storage, then prints a confirmation message.
      */
     @Override
-    public void execute() {
+    public String execute() {
         Task removed = Storage.getInstance().removeTask(this.taskIndex);
-        System.out.printf("Removed: %s%n", removed.toString());
+        return String.format("Removed: %s", removed.toString());
     }
 
     /**

@@ -132,7 +132,7 @@ public class Storage {
      *
      * @param task the {@link Task} to add
      */
-    public void addTasks(Task task) {
+    public void addTask(Task task) {
         tasks.add(task);
         save();
     }

@@ -25,8 +25,10 @@ public class UnmarkTask extends Command {
      * Executes the unmark operation by marking the specified task as not done in storage.
      */
     @Override
-    public void execute() {
+    public String execute() {
         Storage.getInstance().unmarkTask(this.taskIndex);
+        return "Noted, the following task has been unmarked:\n"
+                + Storage.getInstance().getTasks().get(this.taskIndex).toString();
     }
 
     /**
@@ -55,7 +57,7 @@ public class UnmarkTask extends Command {
      */
     public static UnmarkTask of(String[] parts) throws IllegalArgumentException {
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Usage: unmark <shadow.tasks.Task Number>");
+            throw new IllegalArgumentException("Usage: unmark <taskNumber>");
         } else {
             try {
                 int taskIndex = Integer.parseInt(parts[1]) - 1;

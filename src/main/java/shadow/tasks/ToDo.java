@@ -41,9 +41,7 @@ public class ToDo extends Task {
         if (input == null) {
             throw new IllegalArgumentException("Usage: todo <taskName>");
         }
-        ToDo todo = new ToDo(input.trim());
-        System.out.printf("Added: %s%n", todo.toString());
-        return todo;
+        return new ToDo(input.trim());
     }
 
 }

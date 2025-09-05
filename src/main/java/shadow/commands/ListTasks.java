@@ -1,7 +1,6 @@
 package shadow.commands;
 
 import shadow.storage.Storage;
-import shadow.ui.Ui;
 
 /**
  * Represents a command for listing all tasks currently stored in the application.
@@ -24,10 +23,12 @@ public class ListTasks extends Command {
      * Each task is displayed with its index (starting from 1) and description.
      */
     @Override
-    public void execute() {
+    public String execute() {
+        StringBuilder sb = new StringBuilder("List of tasks:\n");
         for (int i = 0; i < Storage.getInstance().getTasks().size(); ++i) {
-            Ui.getInstance().println(String.format("%d: %s", i + 1, Storage.getInstance().getTasks().get(i)));
+            sb.append(String.format("%d: %s\n", i + 1, Storage.getInstance().getTasks().get(i)));
         }
+        return sb.toString();
     }
 
     /**

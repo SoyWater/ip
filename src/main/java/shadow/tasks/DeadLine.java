@@ -53,8 +53,6 @@ public class DeadLine extends Task {
             throw new IllegalArgumentException("Usage: deadline <taskName> /by <by>");
         }
         LocalDateTime deadlineDateTime = DateTimeParser.parse(deadlineDetails[1].trim());
-        DeadLine deadline = new DeadLine(deadlineDetails[0].trim(), deadlineDateTime);
-        System.out.printf("Added: %s%n", deadline);
-        return deadline;
+        return new DeadLine(deadlineDetails[0].trim(), deadlineDateTime);
     }
 }

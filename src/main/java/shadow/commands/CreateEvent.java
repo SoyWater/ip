@@ -48,7 +48,7 @@ public class CreateEvent extends Command {
      */
     public static CreateEvent of(String[] parts) {
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Usage: event <taskName> /from <from> /to <to>");
+            throw new IllegalArgumentException(Event.ERROR_MESSAGE);
         }
         return new CreateEvent(Event.of(parts[1]));
     }

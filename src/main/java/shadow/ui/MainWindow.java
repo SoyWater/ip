@@ -27,11 +27,13 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
+    private final String userImagePath = "/images/DaUser.jpg";
+    private final String shadowImagePath = "/images/DaDuke.png";
     private final Image userImage = new Image(
-            Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaUser.jpg"))
+            Objects.requireNonNull(this.getClass().getResourceAsStream(userImagePath))
     );
     private final Image dukeImage = new Image(
-            Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaDuke.png"))
+            Objects.requireNonNull(this.getClass().getResourceAsStream(shadowImagePath))
     );
 
     /**

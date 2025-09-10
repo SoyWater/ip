@@ -8,6 +8,9 @@ import shadow.storage.Storage;
  * based on its index and delegating the marking operation to {@code Storage}.
  */
 public class MarkTask extends Command {
+
+    public static final String ERROR_MESSAGE = "Usage: mark <Task Number>";
+
     private final int taskIndex;
 
     /**
@@ -45,16 +48,17 @@ public class MarkTask extends Command {
      */
     public static MarkTask of(String[] parts) throws IllegalArgumentException {
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Usage: mark <taskNumber>");
+            throw new IllegalArgumentException(MarkTask.ERROR_MESSAGE);
         }
         try {
             int taskIndex = Integer.parseInt(parts[1]) - 1;
             if (taskIndex >= Storage.getInstance().getTasks().size() || taskIndex < 0) {
-                throw new IllegalArgumentException("You have inputted an invalid task number");
+                String invalidTaskNumberErrorMessage = "You have inputted an invalid task number";
+                throw new IllegalArgumentException(invalidTaskNumberErrorMessage);
             }
             return new MarkTask(taskIndex);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Usage: mark <shadow.tasks.Task Number>");
+            throw new IllegalArgumentException(MarkTask.ERROR_MESSAGE);
         }
     }
 }

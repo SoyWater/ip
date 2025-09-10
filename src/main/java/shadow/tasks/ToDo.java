@@ -10,6 +10,7 @@ package shadow.tasks;
  * that distinguishes it as a ToDo task.
  */
 public class ToDo extends Task {
+    public static final String ERROR_MESSAGE = "Usage: todo <taskName>";
 
     /**
      * Constructs a new ToDo task with the specified name.

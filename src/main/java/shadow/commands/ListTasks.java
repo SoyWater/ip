@@ -42,6 +42,7 @@ public class ListTasks extends Command {
      * @throws IllegalArgumentException never thrown by this method but declared for consistency
      */
     public static ListTasks of(String[] parts) throws IllegalArgumentException {
+        assert(parts[0].equals("list"));
         if (ListTasks.instance == null) {
             ListTasks.instance = new ListTasks();
         }

@@ -45,6 +45,7 @@ public class CreateToDo extends Command {
      * @throws IllegalArgumentException if the input array does not have exactly two elements
      */
     public static CreateToDo of(String[] parts) {
+        assert(parts[0].equals("todo"));
         if (parts.length != 2) {
             throw new IllegalArgumentException("Usage: todo <taskName>");
         }

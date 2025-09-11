@@ -72,25 +72,28 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String userTextInput = userInput.getText();
-
         try {
             Command shadowCommand = Parser.parse(userTextInput);
-            if (shadowCommand.isExit()) {
-                Platform.exit();
-            }
-            String shadowResponse = shadowCommand.execute();
-
-            dialogContainer.getChildren().addAll(
-                    DialogBox.getUserDialog(userTextInput, userImage),
-                    DialogBox.getDukeDialog(shadowResponse, dukeImage)
-            );
+            String shadowResponse = executeCommand(shadowCommand);
+            showUserInputAndShadowResponse(userTextInput, shadowResponse);
         } catch (IllegalArgumentException e) {
-            dialogContainer.getChildren().addAll(
-                    DialogBox.getUserDialog(userTextInput, userImage),
-                    DialogBox.getDukeDialog(e.getMessage(), dukeImage)
-            );
+            showUserInputAndShadowResponse(userTextInput, e.getMessage());
         } finally {
             userInput.clear();
         }
+    }
+
+    private String executeCommand(Command cmd) {
+        if (cmd.isExit()) {
+            Platform.exit();
+        }
+        return cmd.execute();
+    }
+
+    private void showUserInputAndShadowResponse(String userInput, String shadowResponse) {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(userInput, userImage),
+                DialogBox.getDukeDialog(shadowResponse, dukeImage)
+        );
     }
 }

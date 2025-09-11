@@ -22,6 +22,7 @@ public class Parser {
         commands.put("todo", CreateToDo::of);
         commands.put("event", CreateEvent::of);
         commands.put("deadline", CreateDeadLine::of);
+        commands.put("source", Source::of);
         commands.put("bye", parts -> new TerminateCommand());
     }
 

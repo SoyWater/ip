@@ -63,10 +63,12 @@ public class Event extends Task {
         if (input == null) {
             throw new IllegalArgumentException(Event.ERROR_MESSAGE);
         }
+
         String[] fromSplit = input.split("/from", 2);
         if (fromSplit.length < 2) {
             throw new IllegalArgumentException(Event.ERROR_MESSAGE);
         }
+
         String[] toSplit = fromSplit[1].split("/to", 2);
         if (toSplit.length < 2) {
             throw new IllegalArgumentException(Event.ERROR_MESSAGE);

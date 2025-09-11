@@ -40,7 +40,7 @@ public class ToDo extends Task {
      */
     public static ToDo of(String input) {
         if (input == null) {
-            throw new IllegalArgumentException("Usage: todo <taskName>");
+            throw new IllegalArgumentException(ToDo.ERROR_MESSAGE);
         }
         return new ToDo(input.trim());
     }

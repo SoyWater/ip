@@ -53,13 +53,12 @@ public class FindTask extends Command {
     public static FindTask of(String[] parts) throws IllegalArgumentException {
         if (parts.length != 2) {
             throw new IllegalArgumentException(FindTask.ERROR_MESSAGE);
-        } else {
-            try {
-                String findString = parts[1];
-                return new FindTask(FindTask.filterTasks(Storage.getInstance().getTasks(), findString));
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(FindTask.ERROR_MESSAGE);
-            }
+        }
+        try {
+            String findString = parts[1];
+            return new FindTask(FindTask.filterTasks(Storage.getInstance().getTasks(), findString));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(FindTask.ERROR_MESSAGE);
         }
     }
 

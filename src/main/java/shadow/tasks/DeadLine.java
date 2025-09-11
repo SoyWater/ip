@@ -50,10 +50,13 @@ public class DeadLine extends Task {
         if (input == null) {
             throw new IllegalArgumentException(DeadLine.ERROR_MESSAGE);
         }
+
         String[] deadlineDetails = input.split("/by", 2);
+
         if (deadlineDetails.length < 2) {
             throw new IllegalArgumentException(DeadLine.ERROR_MESSAGE);
         }
+
         LocalDateTime deadlineDateTime = DateTimeParser.parse(deadlineDetails[1].trim());
         return new DeadLine(deadlineDetails[0].trim(), deadlineDateTime);
     }

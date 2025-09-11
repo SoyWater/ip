@@ -59,17 +59,16 @@ public class DeleteTask extends Command {
     public static DeleteTask of(String[] parts) throws IllegalArgumentException {
         if (parts.length != 2) {
             throw new IllegalArgumentException(DeleteTask.ERROR_MESSAGE);
-        } else {
-            try {
-                int taskIndex = Integer.parseInt(parts[1]) - 1;
-                if (taskIndex >= Storage.getInstance().getTasks().size() || taskIndex < 0) {
-                    String invalidTaskNumberErrorMessage = "You have inputted an invalid task number";
-                    throw new IllegalArgumentException(invalidTaskNumberErrorMessage);
-                }
-                return new DeleteTask(taskIndex);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(DeleteTask.ERROR_MESSAGE);
+        }
+        try {
+            int taskIndex = Integer.parseInt(parts[1]) - 1;
+            if (taskIndex >= Storage.getInstance().getTasks().size() || taskIndex < 0) {
+                String invalidTaskNumberErrorMessage = "You have inputted an invalid task number";
+                throw new IllegalArgumentException(invalidTaskNumberErrorMessage);
             }
+            return new DeleteTask(taskIndex);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(DeleteTask.ERROR_MESSAGE);
         }
     }
 }

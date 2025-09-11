@@ -17,6 +17,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
 import shadow.parsers.DateTimeAdapter;
+import shadow.parsers.FilePathParser;
 import shadow.tasks.DeadLine;
 import shadow.tasks.Event;
 import shadow.tasks.Task;
@@ -29,10 +30,15 @@ import shadow.tasks.ToDo;
  * Tasks are persisted in a JSON file in the user's home directory.
  */
 public class Storage {
+
+    private static final String DEFAULT_FILE_HOME = System.getProperty("user.home");
+    private static final Path DEFAULT_FILE_DIRECTORY = Paths.get(DEFAULT_FILE_HOME, ".shadowData");
+    private static final Path DEFAULT_FILE_PATH = DEFAULT_FILE_DIRECTORY.resolve("tasks.json");
+
     private static Storage instance;
 
     private final Gson gson;
-    private final Path filePath;
+    private Path filePath;
     private final Type taskListType = new TypeToken<List<Task>>() {}.getType();
     private List<Task> tasks;
 
@@ -49,9 +55,7 @@ public class Storage {
      * </p>
      */
     private Storage() {
-        String userHome = System.getProperty("user.home");
-        Path appDir = Paths.get(userHome, ".shadowData");
-        this.filePath = appDir.resolve("tasks.json");
+        this.filePath = DEFAULT_FILE_PATH;
 
         this.gson = new GsonBuilder()
                 .registerTypeAdapterFactory(
@@ -66,8 +70,8 @@ public class Storage {
         this.tasks = new ArrayList<>();
 
         try {
-            if (!Files.exists(appDir)) {
-                Files.createDirectories(appDir);
+            if (!Files.exists(DEFAULT_FILE_DIRECTORY)) {
+                Files.createDirectories(DEFAULT_FILE_DIRECTORY);
             }
         } catch (IOException e) {
             System.err.println("Failed to create storage directory: " + e.getMessage());
@@ -75,6 +79,7 @@ public class Storage {
 
         load();
     }
+
 
     /**
      * Returns the singleton instance of the {@code Storage} class.
@@ -179,5 +184,35 @@ public class Storage {
     public void unmarkTask(int i) {
         this.tasks.get(i).unmark();
         save();
+    }
+
+    /**
+     * Sets a temporary source file path for storing tasks and initializes
+     * a new task list. The provided path is resolved and validated using
+     * {@link FilePathParser#resolveUserPath(String, boolean, boolean)}.
+     *
+     * @param path the temporary source file path to be set. This path is resolved
+     *             to an absolute, normalized form and must not contain illegal characters.
+     * @throws IOException if an error occurs while resolving the path or creating
+     *                     necessary parent directories.
+     */
+    public void setTemporarySourcePath(String path) throws IOException {
+        this.filePath = FilePathParser.resolveUserPath(path, true, true);
+        this.tasks = new ArrayList<>();
+        load();
+
+    }
+
+    /**
+     * Sets the default source file path for storing tasks and initializes a new task list.
+     * This method resets the file path to the predefined default value and replaces the
+     * current in-memory list of tasks with an empty list. It also attempts to load any
+     * existing tasks from the default file path into memory.
+     */
+    public void setDefaultSourcePath() {
+        this.filePath = DEFAULT_FILE_PATH;
+        this.tasks = new ArrayList<>();
+        load();
+
     }
 }

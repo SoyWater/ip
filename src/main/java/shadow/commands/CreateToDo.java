@@ -25,7 +25,8 @@ public class CreateToDo extends Command {
      * Executes the command to add the {@code ToDo} task to the storage.
      * The task is added to the list of existing tasks managed by the {@code Storage} singleton instance.
      *
-     * @return a {@code String} message confirming the task has been added, including the string representation of the task
+     * @return a {@code String} message confirming the task has been added,
+     * including the string representation of the task
      */
     @Override
     public String execute() {
@@ -47,7 +48,7 @@ public class CreateToDo extends Command {
     public static CreateToDo of(String[] parts) {
         assert(parts[0].equals("todo"));
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Usage: todo <taskName>");
+            throw new IllegalArgumentException(ToDo.ERROR_MESSAGE);
         }
         return new CreateToDo(ToDo.of(parts[1]));
     }

@@ -8,6 +8,9 @@ import shadow.tasks.Task;
  * This command removes the task at the specified index and provides feedback to the user upon successful removal.
  */
 public class DeleteTask extends Command {
+
+    public static final String ERROR_MESSAGE = "Usage: delete <Task Number>";
+
     private final int taskIndex;
 
     /**
@@ -56,17 +59,17 @@ public class DeleteTask extends Command {
     public static DeleteTask of(String[] parts) throws IllegalArgumentException {
         assert(parts[0].equals("delete"));
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Usage: delete <shadow.tasks.Task Number>");
-        } else {
-            try {
-                int taskIndex = Integer.parseInt(parts[1]) - 1;
-                if (taskIndex >= Storage.getInstance().getTasks().size() || taskIndex < 0) {
-                    throw new IllegalArgumentException("You have inputted an invalid task number");
-                }
-                return new DeleteTask(taskIndex);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Usage: delete <shadow.tasks.Task Number>");
+            throw new IllegalArgumentException(DeleteTask.ERROR_MESSAGE);
+        }
+        try {
+            int taskIndex = Integer.parseInt(parts[1]) - 1;
+            if (taskIndex >= Storage.getInstance().getTasks().size() || taskIndex < 0) {
+                String invalidTaskNumberErrorMessage = "You have inputted an invalid task number";
+                throw new IllegalArgumentException(invalidTaskNumberErrorMessage);
             }
+            return new DeleteTask(taskIndex);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(DeleteTask.ERROR_MESSAGE);
         }
     }
 }

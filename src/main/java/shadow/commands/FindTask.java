@@ -12,6 +12,9 @@ import shadow.tasks.Task;
  * Represents a command that finds and displays tasks matching a given keyword.
  */
 public class FindTask extends Command {
+
+    public static final String ERROR_MESSAGE = "Usage: find <findString>";
+
     private final List<Task> tasks;
 
     /**
@@ -50,14 +53,13 @@ public class FindTask extends Command {
     public static FindTask of(String[] parts) throws IllegalArgumentException {
         assert(parts[0].equals("find"));
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Usage: find <findString>");
-        } else {
-            try {
-                String findString = parts[1];
-                return new FindTask(FindTask.filterTasks(Storage.getInstance().getTasks(), findString));
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Usage: delete <shadow.tasks.Task Number>");
-            }
+            throw new IllegalArgumentException(FindTask.ERROR_MESSAGE);
+        }
+        try {
+            String findString = parts[1];
+            return new FindTask(FindTask.filterTasks(Storage.getInstance().getTasks(), findString));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(FindTask.ERROR_MESSAGE);
         }
     }
 

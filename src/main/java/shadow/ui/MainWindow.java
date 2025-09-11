@@ -27,11 +27,13 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
+    private final String userImagePath = "/images/DaUser.jpg";
+    private final String shadowImagePath = "/images/DaDuke.png";
     private final Image userImage = new Image(
-            Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaUser.jpg"))
+            Objects.requireNonNull(this.getClass().getResourceAsStream(userImagePath))
     );
     private final Image dukeImage = new Image(
-            Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaDuke.png"))
+            Objects.requireNonNull(this.getClass().getResourceAsStream(shadowImagePath))
     );
 
     /**
@@ -70,25 +72,28 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String userTextInput = userInput.getText();
-
         try {
             Command shadowCommand = Parser.parse(userTextInput);
-            if (shadowCommand.isExit()) {
-                Platform.exit();
-            }
-            String shadowResponse = shadowCommand.execute();
-
-            dialogContainer.getChildren().addAll(
-                    DialogBox.getUserDialog(userTextInput, userImage),
-                    DialogBox.getDukeDialog(shadowResponse, dukeImage)
-            );
+            String shadowResponse = executeCommand(shadowCommand);
+            showUserInputAndShadowResponse(userTextInput, shadowResponse);
         } catch (IllegalArgumentException e) {
-            dialogContainer.getChildren().addAll(
-                    DialogBox.getUserDialog(userTextInput, userImage),
-                    DialogBox.getDukeDialog(e.getMessage(), dukeImage)
-            );
+            showUserInputAndShadowResponse(userTextInput, e.getMessage());
         } finally {
             userInput.clear();
         }
+    }
+
+    private String executeCommand(Command cmd) {
+        if (cmd.isExit()) {
+            Platform.exit();
+        }
+        return cmd.execute();
+    }
+
+    private void showUserInputAndShadowResponse(String userInput, String shadowResponse) {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(userInput, userImage),
+                DialogBox.getDukeDialog(shadowResponse, dukeImage)
+        );
     }
 }

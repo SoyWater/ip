@@ -14,6 +14,9 @@ import shadow.parsers.DateTimeParser;
  * for creating new event instances.
  */
 public class Event extends Task {
+
+    public static final String ERROR_MESSAGE = "Usage: event <taskName> /from <from> /to <to>";
+
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
 
@@ -58,15 +61,17 @@ public class Event extends Task {
      */
     public static Event of(String input) {
         if (input == null) {
-            throw new IllegalArgumentException("Usage: event <taskName> /from <from> /to <to>");
+            throw new IllegalArgumentException(Event.ERROR_MESSAGE);
         }
+
         String[] fromSplit = input.split("/from", 2);
         if (fromSplit.length < 2) {
-            throw new IllegalArgumentException("Usage: event <taskName> /from <from> /to <to>");
+            throw new IllegalArgumentException(Event.ERROR_MESSAGE);
         }
+
         String[] toSplit = fromSplit[1].split("/to", 2);
         if (toSplit.length < 2) {
-            throw new IllegalArgumentException("Usage: event <taskName> /from <from> /to <to>");
+            throw new IllegalArgumentException(Event.ERROR_MESSAGE);
         }
         LocalDateTime startTime = DateTimeParser.parse(toSplit[0].trim());
         LocalDateTime endTime = DateTimeParser.parse(toSplit[1].trim());

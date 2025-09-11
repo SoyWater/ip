@@ -49,7 +49,7 @@ public class CreateDeadLine extends Command {
     public static CreateDeadLine of(String[] parts) {
         assert(parts[0].equals("deadline"));
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Usage: deadline <taskName> /by <by>");
+            throw new IllegalArgumentException(DeadLine.ERROR_MESSAGE);
         }
 
         return new CreateDeadLine(DeadLine.of(parts[1]));

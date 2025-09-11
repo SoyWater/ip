@@ -8,6 +8,8 @@ import shadow.storage.Storage;
  */
 public class UnmarkTask extends Command {
 
+    public static final String ERROR_MESSAGE = "Usage: unmark <Task Number>";
+
     private final int taskIndex;
 
     /**
@@ -58,17 +60,17 @@ public class UnmarkTask extends Command {
     public static UnmarkTask of(String[] parts) throws IllegalArgumentException {
         assert(parts[0].equals("unmark"));
         if (parts.length != 2) {
-            throw new IllegalArgumentException("Usage: unmark <taskNumber>");
-        } else {
-            try {
-                int taskIndex = Integer.parseInt(parts[1]) - 1;
-                if (taskIndex >= Storage.getInstance().getTasks().size() || taskIndex < 0) {
-                    throw new IllegalArgumentException("You have inputted an invalid task number");
-                }
-                return new UnmarkTask(taskIndex);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Usage: unmark <shadow.tasks.Task Number>");
+            throw new IllegalArgumentException(UnmarkTask.ERROR_MESSAGE);
+        }
+
+        try {
+            int taskIndex = Integer.parseInt(parts[1]) - 1;
+            if (taskIndex >= Storage.getInstance().getTasks().size() || taskIndex < 0) {
+                throw new IllegalArgumentException("You have inputted an invalid task number");
             }
+            return new UnmarkTask(taskIndex);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(UnmarkTask.ERROR_MESSAGE);
         }
     }
 }

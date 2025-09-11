@@ -47,6 +47,7 @@ public class MarkTask extends Command {
      * @throws IllegalArgumentException if the input format is invalid, or the task number is out of range
      */
     public static MarkTask of(String[] parts) throws IllegalArgumentException {
+        assert(parts[0].equals("mark"));
         if (parts.length != 2) {
             throw new IllegalArgumentException(MarkTask.ERROR_MESSAGE);
         }

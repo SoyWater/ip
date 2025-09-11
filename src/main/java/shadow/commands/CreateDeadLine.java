@@ -47,9 +47,11 @@ public class CreateDeadLine extends Command {
      * @throws IllegalArgumentException if the array does not contain exactly two elements
      */
     public static CreateDeadLine of(String[] parts) {
+        assert(parts[0].equals("deadline"));
         if (parts.length != 2) {
             throw new IllegalArgumentException(DeadLine.ERROR_MESSAGE);
         }
+
         return new CreateDeadLine(DeadLine.of(parts[1]));
 
     }

@@ -54,6 +54,7 @@ public class DeleteTask extends Command {
      *     </ul>
      */
     public static DeleteTask of(String[] parts) throws IllegalArgumentException {
+        assert(parts[0].equals("delete"));
         if (parts.length != 2) {
             throw new IllegalArgumentException("Usage: delete <shadow.tasks.Task Number>");
         } else {

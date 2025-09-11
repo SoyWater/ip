@@ -56,6 +56,7 @@ public class UnmarkTask extends Command {
      *     </ul>
      */
     public static UnmarkTask of(String[] parts) throws IllegalArgumentException {
+        assert(parts[0].equals("unmark"));
         if (parts.length != 2) {
             throw new IllegalArgumentException("Usage: unmark <taskNumber>");
         } else {

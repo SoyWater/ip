@@ -48,6 +48,7 @@ public class FindTask extends Command {
      * @throws IllegalArgumentException if the command format is invalid
      */
     public static FindTask of(String[] parts) throws IllegalArgumentException {
+        assert(parts[0].equals("find"));
         if (parts.length != 2) {
             throw new IllegalArgumentException("Usage: find <findString>");
         } else {

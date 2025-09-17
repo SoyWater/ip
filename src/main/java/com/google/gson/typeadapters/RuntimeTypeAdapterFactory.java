@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+// Source: https://github.com/google/gson/blob/main/extras/src/main/java/com/google/gson/typeadapters/RuntimeTypeAdapterFactory.java?utm_source=chatgpt.com
 package com.google.gson.typeadapters;
 
 import java.io.IOException;

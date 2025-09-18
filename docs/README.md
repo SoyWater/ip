@@ -190,6 +190,34 @@ Bye. Hope to see you again soon!
 
 If you enter an invalid command, Shadow will show a helpful error message with usage instructions.
 
+## Data Storage and File Management
+
+Shadow stores your tasks in a JSON file for persistence between sessions.
+
+### Default Data File Location
+By default, your tasks are saved in:
+```
+~/.shadowData/tasks.json
+```
+This is a hidden folder in your home directory.
+
+### Changing the Data File Location
+You can temporarily change the data file route for the current session using:
+```
+source <file path>
+```
+- Example: `source /path/to/your/custom_tasks.json`
+- To revert to the default file, use: `source default`
+
+### Editing the Data File Manually
+The data file is in JSON format. If you plan to edit it manually:
+- **Backup the file first!**
+- Only advanced users should attempt manual edits.
+- You must follow the JSON format exactly, or Shadow may fail to load your tasks or corrupt your data.
+- After editing, restart Shadow to reload your changes.
+
+**Warning:** Manual editing is not recommended unless you know what you are doing. Incorrect edits may result in data loss or application errors.
+
 ---
 
 For more details, refer to the source code or contact the contributors listed in CONTRIBUTORS.md.

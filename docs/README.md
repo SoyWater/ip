@@ -4,6 +4,23 @@ Shadow is a Command Line Interface (CLI) task manager that helps you organize yo
 
 ![Product Screenshot](Ui.png)
 
+## Feature Summary
+
+| Feature                | Command/Action         | Details |
+|------------------------|-----------------------|---------|
+| Add Deadline           | [`deadline`](#adding-a-deadline) | Add a task with a deadline |
+| Add Event              | [`event`](#adding-an-event)      | Add an event with start/end time |
+| Add ToDo               | [`todo`](#adding-a-todo)         | Add a simple task |
+| List Tasks             | [`list`](#listing-tasks)         | Show all tasks |
+| Mark Task as Done      | [`mark`](#marking-and-unmarking-tasks) | Mark a task as done |
+| Unmark Task            | [`unmark`](#marking-and-unmarking-tasks) | Mark a task as not done |
+| Delete Task            | [`delete`](#deleting-tasks)      | Remove a task |
+| Find Task              | [`find`](#finding-tasks)         | Search for tasks |
+| Change Data File       | [`source`](#changing-the-data-file-location) | Temporarily change data file |
+| Error Handling         | [Error Handling](#error-handling) | Invalid command help |
+| Data Storage           | [Data Storage & File Management](#data-storage-and-file-management) | Where tasks are saved |
+| Exit                   | [`bye`](#exiting-shadow)          | Exit the application |
+
 ## Getting Started
 
 ### 1. Ensure Java 17 is Installed

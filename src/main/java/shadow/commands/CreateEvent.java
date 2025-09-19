@@ -41,7 +41,7 @@ public class CreateEvent extends Command {
      * @param parts an array where:
      *              - {@code parts[0]} is the command keyword (e.g., "event")
      *              - {@code parts[1]} contains the event description and time details in the
-     *                expected format "taskName /from <from> /to <to>"
+     *                expected format "taskName /from &ltfrom&gt /to &ltto&gt"
      * @return a new {@code CreateEvent} instance that encapsulates the {@link Event} task created
      *         from the description and time details
      * @throws IllegalArgumentException if the input array does not contain exactly two elements

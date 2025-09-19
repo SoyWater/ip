@@ -1,8 +1,9 @@
 package shadow.tasks;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class TaskTest {
 
@@ -70,7 +71,7 @@ class TaskTest {
     }
 
     @Test
-    void mark_thenUnmark_thenMarkAgain_hasCorrectState() {
+    void mark_thenUnmarkAndMarkAgain_hasCorrectState() {
         Task task = new Task("Cycle state");
         task.mark();
         assertEquals("[X] Cycle state", task.toString());

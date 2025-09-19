@@ -12,9 +12,9 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
-// Source: https://github.com/google/gson/blob/main/extras/src/main/java/com/google/gson/typeadapters/RuntimeTypeAdapterFactory.java?utm_source=chatgpt.com
 package com.google.gson.typeadapters;
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ import com.google.gson.stream.JsonWriter;
 
 /**
  * Adapts values whose runtime type may differ from their declaration type. This is necessary when a
- * field's type is not the same type that GSON should create when deserializing that field. For
+ * field's type is different from the type that GSON should create when deserializing that field. For
  * example, consider these types:
  *
  * <pre>{@code
@@ -142,7 +142,7 @@ import com.google.gson.stream.JsonWriter;
  *
  * <h2>Serialization and deserialization</h2>
  *
- * In order to serialize and deserialize a polymorphic object, you must specify the base type
+ * To serialize and deserialize a polymorphic object, you must specify the base type
  * explicitly.
  *
  * <pre>{@code
@@ -278,7 +278,7 @@ public final class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory {
                                     + typeFieldName);
                 }
                 String label = labelJsonElement.getAsString();
-                @SuppressWarnings("unchecked") // registration requires that subtype extends T
+                @SuppressWarnings("unchecked") // registration requires that the subtype extends T
                 TypeAdapter<R> delegate = (TypeAdapter<R>) labelToDelegate.get(label);
                 if (delegate == null) {
                     throw new JsonParseException(
@@ -295,7 +295,7 @@ public final class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory {
             public void write(JsonWriter out, R value) throws IOException {
                 Class<?> srcType = value.getClass();
                 String label = subtypeToLabel.get(srcType);
-                @SuppressWarnings("unchecked") // registration requires that subtype extends T
+                @SuppressWarnings("unchecked") // registration requires that the subtype extends T
                 TypeAdapter<R> delegate = (TypeAdapter<R>) subtypeToDelegate.get(srcType);
                 if (delegate == null) {
                     throw new JsonParseException(

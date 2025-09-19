@@ -1,5 +1,7 @@
 package shadow.ui;
 
+import java.util.Objects;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,7 +13,6 @@ import javafx.scene.layout.VBox;
 import shadow.commands.Command;
 import shadow.commands.Parser;
 
-import java.util.Objects;
 
 /**
  * Represents the main window of the application that serves as the primary user interface.
@@ -60,10 +61,16 @@ public class MainWindow extends AnchorPane {
      * cleared after the command is handled, regardless of the outcome.
      * <p>
      * Key operations include:
+     * <p>
      * - Parsing user input into a {@code Command} object.
+     * <p>
      * - Executing the parsed command and capturing its response.
-     * - Adding dialog boxes to the {@code dialogContainer} to display both the user's input and the application's response.
+     * <p>
+     * - Adding dialog boxes to the {@code dialogContainer} to display
+     *   both the user's input and the application's response.
+     * <p>
      * - Handling {@code IllegalArgumentException} to display meaningful error messages for invalid inputs.
+     * <p>
      * - Clearing the user input field after processing.
      * <p>
      * This method is triggered by an associated event in the JavaFX interface, typically tied

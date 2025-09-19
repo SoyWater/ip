@@ -1,10 +1,15 @@
 package shadow.tasks;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+
 
 class EventTest {
 
@@ -83,27 +88,21 @@ class EventTest {
 
     @Test
     void of_nullInput_throwsException() {
-        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
-            Event.of(null);
-        });
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> Event.of(null));
         assertEquals("Usage: event <taskName> /from <from> /to <to>", ex.getMessage());
     }
 
     @Test
     void of_missingFrom_throwsException() {
         String input = "Project deadline";
-        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
-            Event.of(input);
-        });
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> Event.of(input));
         assertEquals("Usage: event <taskName> /from <from> /to <to>", ex.getMessage());
     }
 
     @Test
     void of_missingTo_throwsException() {
         String input = "Launch /from 2025-09-10T09:00";
-        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
-            Event.of(input);
-        });
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> Event.of(input));
         assertEquals("Usage: event <taskName> /from <from> /to <to>", ex.getMessage());
     }
 
@@ -120,9 +119,7 @@ class EventTest {
     @Test
     void of_unrecognizedDateFormat_throwsException() {
         String input = "Bad input /from someday /to next week";
-        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
-            Event.of(input);
-        });
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> Event.of(input));
         assertTrue(ex.getMessage().contains("Unrecognized date/time format"));
     }
 

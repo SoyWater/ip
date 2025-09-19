@@ -48,7 +48,7 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * Reverses the order of the child nodes within the DialogBox and sets its alignment to top-left.
+     * Reverses the order of the child nodes within the DialogBox and sets its alignment to the top-left.
      *
      * @return the current DialogBox instance with reversed child nodes and updated alignment
      */
@@ -77,7 +77,8 @@ public class DialogBox extends HBox {
      *
      * @param s the string to be displayed in the dialog box
      * @param i the image to be displayed in the dialog box
-     * @return a new instance of {@code DialogBox} containing the provided text and image, flipped for Duke's perspective
+     * @return a new instance of {@code DialogBox} containing the provided text and image,
+     *     flipped for Duke's perspective
      */
     public static DialogBox getDukeDialog(String s, Image i) {
         return (new DialogBox(s, i)).flip();

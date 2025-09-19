@@ -26,7 +26,7 @@ public class CreateToDo extends Command {
      * The task is added to the list of existing tasks managed by the {@code Storage} singleton instance.
      *
      * @return a {@code String} message confirming the task has been added,
-     * including the string representation of the task
+     *     including the string representation of the task
      */
     @Override
     public String execute() {
